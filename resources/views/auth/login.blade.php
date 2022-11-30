@@ -3,6 +3,7 @@
 @section('content')
 @php
     $page = 'login';
+    $title = 'Login';
 @endphp
 
 <div id="auth">
@@ -30,7 +31,7 @@
                             <i class="bi bi-shield-lock"></i>
                         </div>
                     </div>
-                    <button class="btn btn-primary btn-block btn-lg shadow-lg mt-5" type="submit">Log in</button>
+                    <button class="btn btn-primary btn-block btn-lg shadow-lg mt-5" type="submit">Login</button>
                 </form>
                 <div class="text-center mt-5 text-md fs-5">
                     <p class="text-gray-600">Belum punya akun? <a href="{{ url('/register') }}" class="font-bold">Register</a></p>

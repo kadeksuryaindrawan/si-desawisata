@@ -4,6 +4,7 @@
 
 @php
     $page = 'register';
+    $title = 'Register';
 @endphp
 
 <div id="auth">
