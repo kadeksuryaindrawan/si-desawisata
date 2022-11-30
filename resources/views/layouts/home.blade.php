@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Pacific - Free Bootstrap 4 Template by Colorlib</title>
+	<title>Hidems - Hidden Gems Of Kuta Selatan</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	
@@ -21,34 +21,35 @@
 	<link rel="stylesheet" href="{{ asset('css/jquery.timepicker.css') }}">
 
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
-
     <link rel="stylesheet" href="{{ asset('css/all.min.css') }}">
-
 	
 	<link rel="stylesheet" href="{{ asset('css/flaticon.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
+    <link rel="shortcut icon" href="{{ asset('images/icon.png') }}">
+
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-		<div class="container">
-			<a class="navbar-brand" href="{{ url('/') }}">Hidems<span>KUTA SELATAN</span></a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="oi oi-menu"></span> <i class="fas fa-bars"></i>
-			</button>
-
-			<div class="collapse navbar-collapse" id="ftco-nav">
-				<ul class="navbar-nav ml-auto">
-					<li <?php echo $page == "home" ? "class='nav-item active'" : "class='nav-item'"; ?>><a href="{{ url('/') }}" class="nav-link">Home</a></li>
-					<li <?php echo $page == "about" ? "class='nav-item active'" : "class='nav-item'"; ?>><a href="{{ url('/about') }}" class="nav-link">About</a></li>
-					<li <?php echo $page == "destination" ? "class='nav-item active'" : "class='nav-item'"; ?>><a href="{{ url('/destination') }}" class="nav-link">Destination</a></li>
-					<li <?php echo $page == "contact" ? "class='nav-item active'" : "class='nav-item'"; ?>><a href="{{ url('/contact') }}" class="nav-link">Contact</a></li>
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url('/') }}">Hidems<span>KUTA SELATAN</span></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> <i class="fas fa-bars"></i>
+            </button>
+    
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li <?php echo $page == "home" ? "class='nav-item active'" : "class='nav-item'"; ?>><a href="{{ url('/') }}" class="nav-link">Home</a></li>
+                    <li <?php echo $page == "about" ? "class='nav-item active'" : "class='nav-item'"; ?>><a href="{{ url('/about') }}" class="nav-link">About</a></li>
+                    <li <?php echo $page == "destination" ? "class='nav-item active'" : "class='nav-item'"; ?>><a href="{{ url('/destination') }}" class="nav-link">Destination</a></li>
+                    <li <?php echo $page == "contact" ? "class='nav-item active'" : "class='nav-item'"; ?>><a href="{{ url('/contact') }}" class="nav-link">Contact</a></li>
                     <li class="nav-item"><a href="{{ url('/login') }}" class="nav-link"><button class="btn btn-primary px-5 py-2 mt-n2">Login</button></a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-	<!-- END nav -->
-
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- END nav -->
+    
     @yield('content')		
 			
 
