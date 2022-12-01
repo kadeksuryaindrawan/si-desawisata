@@ -10,7 +10,7 @@
     <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center" data-scrollax-parent="true">
             <div class="col-md-7 ftco-animate">
-                <span class="subheading">Welcome to Hidden Gems of Ku</span>
+                <span class="subheading">Welcome to Hidden Gems of Kuta Selatan</span>
                 <h1 class="mb-4">Temukan Tempat Favorit Anda Bersama Kami</h1>
                 <p class="caps">Bepergian ke sudut manapun di Kuta Selatan, tanpa ribet</p>
             </div>
