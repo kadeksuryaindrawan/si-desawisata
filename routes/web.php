@@ -14,22 +14,22 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [LandingController::class,'index']);
 
-Route::get('/about', function () {
-    return view('about');
-});
+Route::get('/about',[LandingController::class,'about']);
 
-Route::get('/destination', function () {
-    return view('destination');
-});
+Route::get('/destination', [LandingController::class,'destination']);
 
-Route::get('/contact', function () {
-    return view('contact');
-});
+Route::get('/contact', [LandingController::class,'contact']);
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+//admin
+route::group(['middleware' => ['role:Admin'],'prefix' => 'admin',],function(){
+
+    //Route::get('/', [DashboardController::class,'index'])->name('admin.dashboard');
+
+});
