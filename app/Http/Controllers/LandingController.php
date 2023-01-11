@@ -21,4 +21,8 @@ class LandingController extends Controller
     public function contact(){
         return view('contact');
     }
+
+    public function dashboard(){
+        return view('admin.dashboard');
+    }
 }
