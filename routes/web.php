@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\LandingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +23,11 @@ Route::get('/destination', [LandingController::class,'destination']);
 
 Route::get('/contact', [LandingController::class,'contact']);
 
+Route::get('/test', [LandingController::class,'dashboard']);
+
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'admin'])->name('admin');
 
 
 //admin
