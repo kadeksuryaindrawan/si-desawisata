@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\KategoriController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\LandingController;
+use App\Http\Controllers\ObjekWisataController;
+use App\Http\Controllers\PengelolaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,12 +30,27 @@ Route::get('/test', [LandingController::class,'dashboard']);
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'admin'])->name('admin');
-
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //admin
-route::group(['middleware' => ['role:Admin'],'prefix' => 'admin',],function(){
+Route::group(['middleware' => ['role:Admin','auth']],function(){
+    
+    Route::resource('pengelola',PengelolaController::class);
 
-    //Route::get('/', [DashboardController::class,'index'])->name('admin.dashboard');
-
+    Route::get('/pilihpengelola/{id}',[ObjekWisataController::class,'pilihPengelola'])->name('pilihpengelola');
+    Route::put('/pilihpengelola/{id}',[ObjekWisataController::class,'tambahPengelola'])->name('tambahpengelola');
+    
+    Route::resource('kategori',KategoriController::class);
 });
+
+Route::group(['middleware' => ['role:Admin|Pengelola','auth']],function(){
+
+    Route::get('/ubahpassword/{id}',[PengelolaController::class,'ubahPassword'])->name('ubahpassword');
+    Route::put('/ubahpassword/{id}',[PengelolaController::class,'updatePassword'])->name('updatepassword');
+    
+    Route::resource('objekwisata',ObjekWisataController::class);
+});
+
+
+
+

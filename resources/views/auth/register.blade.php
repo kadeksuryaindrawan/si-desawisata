@@ -18,6 +18,12 @@
                 <h1 class="text-primary fs-1 mb-4">Register</h1>
                 <p class="fs-4 mb-5">Silahkan Register menggunakan data diri anda.</p>
 
+                @foreach($errors->all() as $error)
+                  <div class="alert alert-danger" role="alert">
+                      {{$error}}
+                  </div>
+                @endforeach
+
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
                     <div class="form-group position-relative has-icon-left mb-4">

@@ -22,11 +22,11 @@ class UsersSeeder extends Seeder
         $admin->assignRole('Admin');
 
         $pemilik = User::create([
-            'name' => 'Pemilik Hidems',
-            'password' => bcrypt('pemilik123'),
-            'email' => 'pemilik@gmail.com'
+            'name' => 'Pengelola Hidems',
+            'password' => bcrypt('pengelola123'),
+            'email' => 'pengelola@gmail.com'
         ]);
-        $pemilik->assignRole('Pemilik');
+        $pemilik->assignRole('Pengelola');
 
         $pengunjung = User::create([
             'name' => 'Pengunjung Hidems',
