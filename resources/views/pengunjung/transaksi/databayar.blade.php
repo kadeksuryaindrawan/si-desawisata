@@ -23,6 +23,11 @@
         <div class="row">
             <!-- col end -->
             <div class="col-lg-12 mt-5">
+                @if(session('error'))
+                  <div class="alert alert-danger" role="alert">
+                      {{session('error')}}
+                  </div>
+                @endif
                 <div class="card">
                     <div class="card-header">
                         <h3 class="text-center">Data Pembayaran</h3>
@@ -56,7 +61,7 @@
                             </div>
                             <div class="row pb-3">
                                 <div class="col d-grid">
-                                    <button type="submit" class="btn btn-primary btn-lg w-100" name="submit">Bayar</button>
+                                    <button type="submit" class="btn btn-primary btn-lg w-100">Bayar</button>
                                 </div>
                             </div>
                         </form>

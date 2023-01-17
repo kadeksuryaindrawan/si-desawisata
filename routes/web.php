@@ -50,15 +50,26 @@ Route::group(['middleware' => ['role:Admin|Pengelola','auth']],function(){
     Route::put('/ubahpassword/{id}',[PengelolaController::class,'updatePassword'])->name('updatepassword');
     
     Route::resource('objekwisata',ObjekWisataController::class);
+
+    Route::put('/konfirmasibayar/{id}',[TransaksiController::class,'konfirmasibayar'])->name('konfirmasibayar');
 });
 
-Route::put('/datadiri/{id}',[TransaksiController::class,'datadiri'])->name('datadiri');
-Route::get('/dashboard-user',[LandingController::class,'dashboard'])->name('dashboard');
-Route::put('/databayar/{id}',[TransaksiController::class,'databayar'])->name('databayar');
-Route::put('/bayar/{id}',[TransaksiController::class,'bayar'])->name('bayar');
-Route::put('/konfirmasibayar/{id}',[TransaksiController::class,'konfirmasibayar'])->name('konfirmasibayar');
-Route::put('/unduhinvoice/{id}',[TransaksiController::class,'unduhinvoice'])->name('unduhinvoice');
-Route::resource('transaksi',TransaksiController::class);
+Route::group(['middleware' => ['role:Pengunjung','auth']],function(){
+
+    Route::put('/datadiri/{id}',[TransaksiController::class,'datadiri'])->name('datadiri');
+    Route::get('/dashboard-user',[LandingController::class,'dashboard'])->name('dashboard');
+    Route::put('/databayar/{id}',[TransaksiController::class,'databayar'])->name('databayar');
+    Route::put('/bayar/{id}',[TransaksiController::class,'bayar'])->name('bayar');
+});
+
+Route::group(['middleware' => ['role:Pengunjung|Admin|Pengelola','auth']],function(){
+
+    Route::put('/unduhinvoice/{id}',[TransaksiController::class,'unduhinvoice'])->name('unduhinvoice');
+    Route::resource('transaksi',TransaksiController::class);
+});
+
+
+
 
 
 
