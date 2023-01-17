@@ -7,8 +7,7 @@
     <title>Hidems - {{ $title }}</title>
     
     <link rel="stylesheet" href="{{ asset('dashboard/css/main/app.css') }}">
-    <link rel="shortcut icon" href="{{ asset('dashboard/images/logo/favicon.svg') }}" type="image/x-icon">
-    <link rel="shortcut icon" href="{{ asset('dashboard/images/logo/favicon.png') }}" type="image/png">
+    <link rel="shortcut icon" href="{{ asset('images/icon.png') }}">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     
 <link rel="stylesheet" href="{{ asset('dashboard/css/shared/iconly.css') }}">
