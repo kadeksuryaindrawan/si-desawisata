@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 class LandingController extends Controller
 {
     public function index(){
-        
-        return view('index');
+        $datas = ObjekWisata::orderBy('created_at','DESC')->get();
+        return view('index',compact('datas'));
     }
 
     public function about(){
