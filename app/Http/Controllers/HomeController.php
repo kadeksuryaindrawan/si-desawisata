@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -24,6 +23,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard');
+        if(Auth::user()->hasRole('Admin') || Auth::user()->hasRole('Pengelola')){
+            return view('admin.index');
+        }
+        else{
+            return view('index');
+        }
+        
     }
 }
