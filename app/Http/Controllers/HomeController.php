@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -21,8 +22,17 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function admin()
+    public function index()
     {
-        return view('admin.dashboard');
+        
+        if(Auth::user()->hasRole('Admin')){
+            return view('admin.dashboard');
+        }
+        if(Auth::user()->hasRole('Pengelola')){
+            return view('admin.dashboard');
+        }
+        if(Auth::user()->hasRole('Pengunjung')){
+            return view('index');
+        }
     }
 }
