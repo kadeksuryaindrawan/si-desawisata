@@ -24,6 +24,8 @@ Route::get('/about',[LandingController::class,'about']);
 
 Route::get('/destination', [LandingController::class,'destination']);
 
+Route::get('/detail/{id}', [LandingController::class,'detail'])->name('detail');
+
 Route::get('/contact', [LandingController::class,'contact']);
 
 Route::get('/test', [LandingController::class,'dashboard']);

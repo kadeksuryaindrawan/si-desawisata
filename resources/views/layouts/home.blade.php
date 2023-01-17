@@ -28,6 +28,9 @@
 
     <link rel="shortcut icon" href="{{ asset('images/icon.png') }}">
 
+	<link rel="stylesheet" type="text/css" href="{{ asset('dashboard/css/lightbox.css') }}">
+<script type="text/javascript" src="{{ asset('dashboard/js/jquery-3.6.0.min.js') }}"></script>
+
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
@@ -87,6 +90,7 @@
 			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 			<script src="{{ asset('js/google-map.js') }}"></script>
 			<script src="{{ asset('js/main.js') }}"></script>
+			<script type="text/javascript" src="{{ asset('dashboard/js/lightbox.js') }} "></script>
 			
 		</body>
 		</html>

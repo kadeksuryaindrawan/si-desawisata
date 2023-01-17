@@ -21,6 +21,11 @@ class LandingController extends Controller
         return view('destination',compact('datas'));
     }
 
+    public function detail($id){
+        $data = ObjekWisata::find($id);
+        return view('detail',compact('data'));
+    }
+
     public function contact(){
         return view('contact');
     }

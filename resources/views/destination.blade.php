@@ -6,7 +6,7 @@
     $page = 'destination';
 @endphp
 
-<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('images/bg_1.jpg');">
+<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('{{ asset('images/bg_1.jpg') }}');">
     <div class="overlay"></div>
     <div class="container">
       <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
@@ -99,10 +99,10 @@
         @foreach ($datas as $item)
         
         <div class="col-md-4 ftco-animate">
-            <a href="">
+            <a href="{{ route('detail',$item->id) }}">
             <div class="project-wrap">
                <div class="img" style="background-image: url('{{ asset($item->foto) }}');">
-                  <span class="price">Rp. {{ number_format($item->harga,0,",",".") }}/person</span>
+                  <span class="price">Rp. {{ number_format($item->harga,0,",",".") }}/orang</span>
                </div>
               <div class="text p-4">
                   <span class="days">{{ $item->kategori->nama_kategori }}</span>
