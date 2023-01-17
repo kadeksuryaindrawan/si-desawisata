@@ -45,12 +45,24 @@
         <ul class="menu list-unstyled">
             <li class="sidebar-title">Menu</li>
             
+            @if (Auth::user()->hasRole('Admin') || Auth::user()->hasRole('Pengelola'))
             <li <?php if($page == "dashboard") echo "class='sidebar-item active'";?>>
                 <a href="{{ route('home') }}" class='sidebar-link'>
                     <i class="bi bi-grid-fill"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
+            @endif
+
+            @if (Auth::user()->hasRole('Pengunjung'))
+            <li <?php if($page == "dashboard") echo "class='sidebar-item active'";?>>
+                <a href="{{ route('dashboard') }}" class='sidebar-link'>
+                    <i class="bi bi-grid-fill"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            @endif
+            
             @if (Auth::user()->hasRole('Admin'))
             <li <?php if($page == "pengelola") echo "class='sidebar-item active'";?>>
                 <a href="{{ route('pengelola.index') }}" class='sidebar-link'>
@@ -81,7 +93,12 @@
             </li>
             @endif
             
-            
+            <li <?php if($page == "transaksi") echo "class='sidebar-item active'";?>>
+                <a href="{{ route('transaksi.index') }}" class='sidebar-link'>
+                    <i class="bi bi-currency-dollar"></i>
+                    <span>Transaksi</span>
+                </a>
+            </li>
         </ul>
     </div>
 </div>

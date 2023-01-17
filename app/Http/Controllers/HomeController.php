@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ObjekWisata;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -26,8 +27,9 @@ class HomeController extends Controller
         if(Auth::user()->hasRole('Admin') || Auth::user()->hasRole('Pengelola')){
             return view('admin.index');
         }
-        else{
-            return view('index');
+        if(Auth::user()->hasRole('Pengunjung')){
+            $datas = ObjekWisata::orderBy('created_at','DESC')->get();
+            return view('index',compact('datas'));
         }
         
     }

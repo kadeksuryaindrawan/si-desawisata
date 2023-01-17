@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\ObjekWisataController;
 use App\Http\Controllers\PengelolaController;
+use App\Http\Controllers\TransaksiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,8 +28,6 @@ Route::get('/destination', [LandingController::class,'destination']);
 Route::get('/detail/{id}', [LandingController::class,'detail'])->name('detail');
 
 Route::get('/contact', [LandingController::class,'contact']);
-
-Route::get('/test', [LandingController::class,'dashboard']);
 
 Auth::routes();
 
@@ -52,6 +51,14 @@ Route::group(['middleware' => ['role:Admin|Pengelola','auth']],function(){
     
     Route::resource('objekwisata',ObjekWisataController::class);
 });
+
+Route::put('/datadiri/{id}',[TransaksiController::class,'datadiri'])->name('datadiri');
+Route::get('/dashboard-user',[LandingController::class,'dashboard'])->name('dashboard');
+Route::put('/databayar/{id}',[TransaksiController::class,'databayar'])->name('databayar');
+Route::put('/bayar/{id}',[TransaksiController::class,'bayar'])->name('bayar');
+Route::put('/konfirmasibayar/{id}',[TransaksiController::class,'konfirmasibayar'])->name('konfirmasibayar');
+Route::put('/unduhinvoice/{id}',[TransaksiController::class,'unduhinvoice'])->name('unduhinvoice');
+Route::resource('transaksi',TransaksiController::class);
 
 
 

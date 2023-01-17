@@ -46,10 +46,16 @@
                     <li <?php echo $page == "about" ? "class='nav-item active'" : "class='nav-item'"; ?>><a href="{{ url('/about') }}" class="nav-link">About</a></li>
                     <li <?php echo $page == "destination" ? "class='nav-item active'" : "class='nav-item'"; ?>><a href="{{ url('/destination') }}" class="nav-link">Destination</a></li>
                     <li <?php echo $page == "contact" ? "class='nav-item active'" : "class='nav-item'"; ?>><a href="{{ url('/contact') }}" class="nav-link">Contact</a></li>
+					
+					
+					
                     @if (Auth::check() == false)
 						<li class="nav-item"><a href="{{ url('/login') }}" class="nav-link"><button class="btn btn-primary px-5 py-2 mt-n2">Login</button></a></li>
 					@endif
 					@if (Auth::check() == true)
+						@if (Auth::user()->hasRole('Pengunjung'))
+							<li class="nav-item"><a href="{{ route('dashboard') }}" class="nav-link">Dashboard</a></li>
+						@endif
 						<li class="nav-item">
 							<a class="nav-link" href="{{ route('logout') }}"
                             onclick="event.preventDefault();

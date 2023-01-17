@@ -29,4 +29,8 @@ class ObjekWisata extends Model
     public function pengelola(){
         return $this->belongsTo(User::class,'pengelola_id');
     }
+
+    public function transaksi(){
+        return $this->hasMany(Transaksi::class);
+    }
 }

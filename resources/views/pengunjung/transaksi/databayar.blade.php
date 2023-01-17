@@ -3,7 +3,7 @@
 @section('content')
 
 @php
-    $page = 'destination';
+    $page = 'datadiri';
 @endphp
 
 <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('{{ asset('images/bg_1.jpg') }}');">
@@ -12,7 +12,7 @@
       <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
         <div class="col-md-9 ftco-animate pb-5 text-center">
            <p class="breadcrumbs"><span class="mr-2"><a href="{{ url('/') }}">Home <i class="fa fa-chevron-right"></i></a></span> <span>Destination Detail <i class="fa fa-chevron-right"></i></span></p>
-           <h1 class="mb-0 bread">Destination Detail</h1>
+           <h1 class="mb-0 bread">Data Pembayaran</h1>
        </div>
    </div>
   </div>
@@ -21,45 +21,25 @@
   <section class="ftco-section">
     <div class="container pb-5">
         <div class="row">
-            <div class="col-lg-5 mt-5">
-                <div class="card mb-3">
-                    <a class="example-image-link"
-                                                     href="{{ asset($data->foto) }}" data-lightbox="example-1">
-                                                     <img class="card-img img-fluid" src="{{ asset($data->foto) }}" alt="Card image cap" id="product-detail"></a>
-                    
-                </div>
-            </div>
             <!-- col end -->
-            <div class="col-lg-7 mt-5">
+            <div class="col-lg-12 mt-5">
                 <div class="card">
+                    <div class="card-header">
+                        <h3 class="text-center">Data Pembayaran</h3>
+                    </div>
                     <div class="card-body">
-                        <h1 class="h2">{{ ucwords($data->nama) }}</h1>
-                        <p class="h3 py-2">Rp. {{ number_format($data->harga,0,",",".") }} / Orang</p>
+                        <h4>Silahkan Melakukan Transfer ke Rekening BCA : <strong>279238192 an cicidimsum</strong> dan upload bukti pembayaran pada form dibawah</h4>
                         
-                        <ul class="list-inline">
-                            <li class="list-inline-item">
-                                <h6>Kategori :</h6>
-                            </li>
-                            <li class="list-inline-item">
-                                <p class="text-muted"><strong>{{ $data->kategori->nama_kategori }}</strong></p>
-                            </li>
-                        </ul>
+                        <h6>KODE TRANSAKSI : </h6>
+                        <p><strong>HIDEMS{{ $data->id.$data->user_id.$data->objek_wisata_id }}</strong></p>
+                        
+                        <h6>Nama Objek Wisata : </h6>
+                        <p><strong>{{ $data->objekwisata->nama }}</strong></p>
+                        
+                        <h6>Total Bayar :</h6>
+                        <p><strong>Rp. {{ number_format($data->total,0,",",".") }}</strong></p>
 
-                        <h6>Alamat :</h6>
-                        <p><strong>{{ $data->alamat }}</strong></p>
-
-                        <h6>Deskripsi :</h6>
-                        <p>{{ $data->deskripsi }}</p>
-                        <ul class="list-inline">
-                            <li class="list-inline-item">
-                                <h6>Fasilitas :</h6>
-                            </li>
-                            <li class="list-inline-item">
-                                <p class="text-muted"><strong>{{ $data->fasilitas }}</strong></p>
-                            </li>
-                        </ul>
-
-                        <form action="{{ route('datadiri',$data->id) }}" method="POST">
+                        <form action="{{ route('bayar',$data->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="row">
@@ -67,8 +47,8 @@
                                 <div class="col-auto">
                                     <ul class="list-inline pb-3">
                                         <li class="list-inline-item text-right">
-                                            Jumlah :
-                                            <input type="number" name="jumlah" id="product-quanity" value="1">
+                                            Bukti Pembayaran :
+                                            <input type="file" name="bukti_bayar">
                                         </li>
                                         
                                     </ul>
@@ -76,15 +56,10 @@
                             </div>
                             <div class="row pb-3">
                                 <div class="col d-grid">
-                                    <button type="submit" class="btn btn-primary btn-lg w-100" name="submit">Beli Tiket</button>
+                                    <button type="submit" class="btn btn-primary btn-lg w-100" name="submit">Bayar</button>
                                 </div>
                             </div>
                         </form>
-                        <div class="row pb-3">
-                            <div class="col d-grid">
-                                <a href="{{ url('/destination') }}"><button class="btn btn-secondary btn-lg w-100" name="submit">Kembali</button></a>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

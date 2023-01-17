@@ -45,4 +45,8 @@ class User extends Authenticatable
     public function objekWisata(){
         return $this->hasOne(ObjekWisata::class);
     }
+
+    public function transaksi(){
+        return $this->hasMany(Transaksi::class);
+    }
 }
