@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ObjekWisata;
 use Illuminate\Http\Request;
 
 class LandingController extends Controller
@@ -16,7 +17,8 @@ class LandingController extends Controller
     }
 
     public function destination(){
-        return view('destination');
+        $datas = ObjekWisata::orderBy('created_at','DESC')->get();
+        return view('destination',compact('datas'));
     }
 
     public function contact(){

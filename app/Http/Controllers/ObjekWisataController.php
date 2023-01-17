@@ -189,6 +189,9 @@ class ObjekWisataController extends Controller
      */
     public function destroy($id)
     {
+        $objek = ObjekWisata::find($id);
+
+        unlink($objek->foto);
         ObjekWisata::destroy($id);
 
         return redirect()->back()->with('success', 'Objek wisata berhasil dihapus!');
