@@ -14,7 +14,7 @@
                 <h1 class="mb-4">Temukan Tempat Favorit Anda Bersama Kami</h1>
                 <p class="caps">Bepergian ke sudut manapun di Kuta Selatan, tanpa ribet</p>
             </div>
-            <a href="https://vimeo.com/45830194" class="icon-video popup-vimeo d-flex align-items-center justify-content-center mb-4">
+            <a href="https://youtu.be/v7o6smEU8AM" class="icon-video popup-vimeo d-flex align-items-center justify-content-center mb-4">
                 <span class="fa fa-play"></span>
             </a>
         </div>
