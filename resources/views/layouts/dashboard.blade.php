@@ -99,6 +99,16 @@
                     <span>Transaksi</span>
                 </a>
             </li>
+
+            @if (Auth::user()->hasRole('Admin') || Auth::user()->hasRole('Pengelola'))
+
+            <li <?php if($page == "laporan") echo "class='sidebar-item active'";?>>
+                <a href="{{ route('laporan.index') }}" class='sidebar-link'>
+                    <i class="bi bi-file-earmark"></i>
+                    <span>Laporan</span>
+                </a>
+            </li>
+            @endif
         </ul>
     </div>
 </div>
