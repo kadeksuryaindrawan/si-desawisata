@@ -4,6 +4,7 @@ use App\Http\Controllers\KategoriController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\LandingController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\ObjekWisataController;
 use App\Http\Controllers\PengelolaController;
 use App\Http\Controllers\TransaksiController;
@@ -42,6 +43,11 @@ Route::group(['middleware' => ['role:Admin','auth']],function(){
     Route::put('/pilihpengelola/{id}',[ObjekWisataController::class,'tambahPengelola'])->name('tambahpengelola');
     
     Route::resource('kategori',KategoriController::class);
+    Route::get('/cetaklaporan',[LaporanController::class,'cetaklaporan'])->name('cetaklaporan');
+});
+
+Route::group(['middleware' => ['role:Pengelola','auth']],function(){
+    Route::get('/cetaklaporan/{id}',[LaporanController::class,'cetaklaporanpengelola'])->name('cetaklaporanpengelola');
 });
 
 Route::group(['middleware' => ['role:Admin|Pengelola','auth']],function(){
@@ -52,6 +58,8 @@ Route::group(['middleware' => ['role:Admin|Pengelola','auth']],function(){
     Route::resource('objekwisata',ObjekWisataController::class);
 
     Route::put('/konfirmasibayar/{id}',[TransaksiController::class,'konfirmasibayar'])->name('konfirmasibayar');
+    Route::resource('laporan',LaporanController::class);
+    
 });
 
 Route::group(['middleware' => ['role:Pengunjung','auth']],function(){
