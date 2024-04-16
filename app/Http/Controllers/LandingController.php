@@ -9,7 +9,8 @@ class LandingController extends Controller
 {
     public function index(){
         $datas = ObjekWisata::orderBy('created_at','DESC')->get();
-        return view('index',compact('datas'));
+        $datas3 = ObjekWisata::orderBy('created_at', 'DESC')->paginate(3);
+        return view('index',compact('datas','datas3'));
     }
 
     public function about(){

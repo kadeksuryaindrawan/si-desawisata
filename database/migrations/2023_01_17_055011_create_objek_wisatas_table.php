@@ -18,7 +18,6 @@ class CreateObjekWisatasTable extends Migration
             $table->foreignId('pengelola_id')->nullable();
             $table->foreignId('kategori_id');
             $table->string('nama');
-            $table->double('harga');
             $table->text('alamat');
             $table->text('longitude');
             $table->text('latitude');

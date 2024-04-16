@@ -52,46 +52,42 @@
                                             <div class="form-group">
                                                 <label for="email-id-vertical">Nama Objek Wisata</label>
                                                 <input type="text" id="email-id-vertical" class="form-control"
-                                                    name="nama" placeholder="Nama Objek Wisata" value="{{ $data->nama }}">
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-group">
-                                                <label for="email-id-vertical">Harga Tiket (Rp)</label>
-                                                <input type="number" id="email-id-vertical" class="form-control"
-                                                    name="harga" placeholder="Harga" value="{{ $data->harga }}">
+                                                    name="nama" placeholder="Nama Objek Wisata" value="{{ $data->nama }}" required>
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
                                                 <label for="alamat" class="form-label">Alamat</label>
-                                                <textarea class="form-control" id="alamat" rows="3" name="alamat">{{ $data->alamat }}</textarea>
+                                                <textarea class="form-control" id="alamat" rows="3" name="alamat" required>{{ $data->alamat }}</textarea>
                                             </div>
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-6">
                                             <div class="form-group">
-                                                <label for="email-id-vertical">Longitude</label>
-                                                <input type="text" id="email-id-vertical" class="form-control"
-                                                    name="longitude" placeholder="Longitude" value="{{ $data->longitude }}">
+                                                <label for="longitude">Longitude</label>
+                                                <input type="text" id="longitude" class="form-control"
+                                                    name="longitude" placeholder="Longitude" value="{{ $data->longitude }}" readonly required>
                                             </div>
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-6">
                                             <div class="form-group">
-                                                <label for="email-id-vertical">Latitude</label>
-                                                <input type="text" id="email-id-vertical" class="form-control"
-                                                    name="latitude" placeholder="Latitude" value="{{ $data->latitude }}">
+                                                <label for="latitude">Latitude</label>
+                                                <input type="text" id="latitude" class="form-control"
+                                                    name="latitude" placeholder="Latitude" value="{{ $data->latitude }}" readonly required>
                                             </div>
+                                        </div>
+                                        <div class="col-lg-12 mb-5">
+                                            <div id="map" style="width: 100%;height: 500px;border-radius: 10px;"></div>
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
                                                 <label for="deskripsi" class="form-label">Deskripsi</label>
-                                                <textarea class="form-control" id="deskripsi" rows="3" name="deskripsi">{{ $data->deskripsi }}</textarea>
+                                                <textarea class="form-control" id="deskripsi" rows="3" name="deskripsi" required>{{ $data->deskripsi }}</textarea>
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
                                                 <label for="fasilitas" class="form-label">Fasilitas</label>
-                                                <textarea class="form-control" id="fasilitas" rows="3" name="fasilitas">{{ $data->fasilitas }}</textarea>
+                                                <textarea class="form-control" id="fasilitas" rows="3" name="fasilitas" required>{{ $data->fasilitas }}</textarea>
                                             </div>
                                         </div>
                                         <div class="col-12">
@@ -124,5 +120,36 @@
     <!-- // Basic Vertical form layout section end -->
 </div>
 
+    <script>
+
+    let mapOptions = {
+        center:[{{ $data->latitude }}, {{ $data->longitude }}],
+        zoom:13
+    }
+
+    let map = new L.map('map' , mapOptions);
+
+    let layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+    map.addLayer(layer);
+
+    var latlong = L.marker([{{ $data->latitude }}, {{ $data->longitude }}]).addTo(map);
+
+    let marker = null;
+    map.on('click', (event)=> {
+
+        map.removeLayer(latlong);
+
+        if(marker !== null){
+            map.removeLayer(marker);
+
+        }
+
+        marker = L.marker([event.latlng.lat , event.latlng.lng]).addTo(map);
+
+        document.getElementById('latitude').value = event.latlng.lat;
+        document.getElementById('longitude').value = event.latlng.lng;
+
+    })
+    </script>
 
 @endsection

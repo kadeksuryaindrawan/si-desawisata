@@ -27,12 +27,5 @@ class UsersSeeder extends Seeder
             'email' => 'pengelola@gmail.com'
         ]);
         $pemilik->assignRole('Pengelola');
-
-        $pengunjung = User::create([
-            'name' => 'Pengunjung Hidems',
-            'password' => bcrypt('pengunjung123'),
-            'email' => 'pengunjung@gmail.com'
-        ]);
-        $pengunjung->assignRole('Pengunjung');
     }
 }

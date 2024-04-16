@@ -51,53 +51,49 @@
                                             <div class="form-group">
                                                 <label for="email-id-vertical">Nama Objek Wisata</label>
                                                 <input type="text" id="email-id-vertical" class="form-control"
-                                                    name="nama" placeholder="Nama Objek Wisata">
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-group">
-                                                <label for="email-id-vertical">Harga Tiket (Rp)</label>
-                                                <input type="number" id="email-id-vertical" class="form-control"
-                                                    name="harga" placeholder="Harga">
+                                                    name="nama" placeholder="Nama Objek Wisata" required>
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
                                                 <label for="alamat" class="form-label">Alamat</label>
-                                                <textarea class="form-control" id="alamat" rows="3" name="alamat"></textarea>
+                                                <textarea class="form-control" id="alamat" rows="3" name="alamat" required></textarea>
                                             </div>
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-6">
                                             <div class="form-group">
-                                                <label for="email-id-vertical">Longitude</label>
-                                                <input type="text" id="email-id-vertical" class="form-control"
-                                                    name="longitude" placeholder="Longitude">
+                                                <label for="longitude">Longitude</label>
+                                                <input type="text" id="longitude" class="form-control"
+                                                    name="longitude" placeholder="Longitude" readonly required>
                                             </div>
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-6">
                                             <div class="form-group">
-                                                <label for="email-id-vertical">Latitude</label>
-                                                <input type="text" id="email-id-vertical" class="form-control"
-                                                    name="latitude" placeholder="Latitude">
+                                                <label for="latitude">Latitude</label>
+                                                <input type="text" id="latitude" class="form-control"
+                                                    name="latitude" placeholder="Latitude" readonly required>
                                             </div>
+                                        </div>
+                                        <div class="col-lg-12 mb-5">
+                                            <div id="map" style="width: 100%;height: 500px;border-radius: 10px;"></div>
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
                                                 <label for="deskripsi" class="form-label">Deskripsi</label>
-                                                <textarea class="form-control" id="deskripsi" rows="3" name="deskripsi"></textarea>
+                                                <textarea class="form-control" id="deskripsi" rows="3" name="deskripsi" required></textarea>
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
                                                 <label for="fasilitas" class="form-label">Fasilitas</label>
-                                                <textarea class="form-control" id="fasilitas" rows="3" name="fasilitas"></textarea>
+                                                <textarea class="form-control" id="fasilitas" rows="3" name="fasilitas" required></textarea>
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
                                                 <label for="email-id-vertical">Foto Objek Wisata</label>
                                                 <input type="file" id="email-id-vertical" class="form-control"
-                                                    name="foto" placeholder="Foto Objek Wisata">
+                                                    name="foto" placeholder="Foto Objek Wisata" required>
                                             </div>
                                         </div>
                                         <div class="col-12 d-flex justify-content-center">
@@ -120,5 +116,31 @@
     <!-- // Basic Vertical form layout section end -->
 </div>
 
+    <script>
+        let mapOptions = {
+            center:[-8.795349, 115.168552],
+            zoom:13
+        }
+
+        let map = new L.map('map' , mapOptions);
+
+        let layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+        map.addLayer(layer);
+
+
+        let marker = null;
+        map.on('click', (event)=> {
+
+            if(marker !== null){
+                map.removeLayer(marker);
+            }
+
+            marker = L.marker([event.latlng.lat , event.latlng.lng]).addTo(map);
+
+            document.getElementById('latitude').value = event.latlng.lat;
+            document.getElementById('longitude').value = event.latlng.lng;
+
+        })
+    </script>
 
 @endsection

@@ -30,7 +30,7 @@
                             <button class="btn btn-primary my-2">Tambah Objek Wisata</button>
                         </a>
                     @endif
-                    
+
                 </div>
             </div>
             <!-- <div class="col-12 col-md-6 order-md-2 order-first">
@@ -60,8 +60,6 @@
                                         <th>Pengelola</th>
                                         <th>Kategori</th>
                                         <th>Nama Objek Wisata</th>
-                                        <th>Harga Tiket</th>
-                                        
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -75,7 +73,7 @@
                                                 <td>
                                                     <a class="example-image-link"
                                                      href="{{ asset($item->foto) }}" data-lightbox="example-1">
-                                                     <img style="width: 50px; height:50px;" src="{{ asset($item->foto) }}" alt=""></a> 
+                                                     <img style="width: 50px; height:50px;" src="{{ asset($item->foto) }}" alt=""></a>
                                                 </td>
 
                                                 @if ($item->pengelola_id == NULL)
@@ -86,8 +84,7 @@
                                                 @endif
                                                 <td>{{ $item->kategori->nama_kategori }}</td>
                                                 <td>{{ $item->nama }}</td>
-                                                <td>Rp. {{ number_format($item->harga,0,",",".") }}</td>
-                                                
+
                                                 <td>
                                                     <div class="dropdown">
                                                         <button id="toa" class="btn btn-primary" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -98,9 +95,9 @@
                                                             @if (Auth::user()->hasRole('Admin'))
                                                                 <a href="{{ route('pilihpengelola',$item->id) }}" class="dropdown-item"><i class="bi bi-person"></i> Pilih Pengelola</a>
                                                             @endif
-                                                            
+
                                                             <a href="{{ route('objekwisata.edit',$item->id) }}" class="dropdown-item"><i class="bi bi-pencil-square"></i> Edit</a>
-                                                            
+
                                                             @if (Auth::user()->hasRole('Admin'))
                                                             <form action="{{route('objekwisata.destroy',$item->id)}}" method="post">
                                                                 @csrf
@@ -108,13 +105,13 @@
                                                                 <button class="dropdown-item"><i class="bi bi-trash"></i> Hapus</button>
                                                               </form>
                                                             @endif
-                                                            
-                                                              
+
+
                                                         </div>
                                                     </div>
                                                 </td>
                                             </tr>
-                                        @endforeach                       
+                                        @endforeach
                                 </tbody>
                             </table>
                     </div>

@@ -30,50 +30,33 @@ Route::get('/detail/{id}', [LandingController::class,'detail'])->name('detail');
 
 Route::get('/contact', [LandingController::class,'contact']);
 
-Auth::routes();
+Auth::routes([
+    'register' => false,
+    'reset' => false,
+    'verify' => false,
+]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //admin
 Route::group(['middleware' => ['role:Admin','auth']],function(){
-    
+
     Route::resource('pengelola',PengelolaController::class);
 
     Route::get('/pilihpengelola/{id}',[ObjekWisataController::class,'pilihPengelola'])->name('pilihpengelola');
     Route::put('/pilihpengelola/{id}',[ObjekWisataController::class,'tambahPengelola'])->name('tambahpengelola');
-    
+
     Route::resource('kategori',KategoriController::class);
-    Route::get('/cetaklaporan',[LaporanController::class,'cetaklaporan'])->name('cetaklaporan');
 });
 
-Route::group(['middleware' => ['role:Pengelola','auth']],function(){
-    Route::get('/cetaklaporan/{id}',[LaporanController::class,'cetaklaporanpengelola'])->name('cetaklaporanpengelola');
-});
-
+//pengelola
 Route::group(['middleware' => ['role:Admin|Pengelola','auth']],function(){
 
     Route::get('/ubahpassword/{id}',[PengelolaController::class,'ubahPassword'])->name('ubahpassword');
     Route::put('/ubahpassword/{id}',[PengelolaController::class,'updatePassword'])->name('updatepassword');
-    
+
     Route::resource('objekwisata',ObjekWisataController::class);
 
-    Route::put('/konfirmasibayar/{id}',[TransaksiController::class,'konfirmasibayar'])->name('konfirmasibayar');
-    Route::resource('laporan',LaporanController::class);
-    
-});
-
-Route::group(['middleware' => ['role:Pengunjung','auth']],function(){
-
-    Route::put('/datadiri/{id}',[TransaksiController::class,'datadiri'])->name('datadiri');
-    Route::get('/dashboard-user',[LandingController::class,'dashboard'])->name('dashboard');
-    Route::put('/databayar/{id}',[TransaksiController::class,'databayar'])->name('databayar');
-    Route::put('/bayar/{id}',[TransaksiController::class,'bayar'])->name('bayar');
-});
-
-Route::group(['middleware' => ['role:Pengunjung|Admin|Pengelola','auth']],function(){
-
-    Route::put('/unduhinvoice/{id}',[TransaksiController::class,'unduhinvoice'])->name('unduhinvoice');
-    Route::resource('transaksi',TransaksiController::class);
 });
 
 

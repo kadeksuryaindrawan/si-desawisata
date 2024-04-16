@@ -80,96 +80,46 @@
         </div>
     </section>
 
-    {{-- <section class="ftco-section img ftco-select-destination" style="background-image: url(images/bg_3.jpg);">
+    <section class="ftco-section" style="margin-bottom: -150px; margin-top: -150px;">
         <div class="container">
-            <div class="row justify-content-center pb-4">
+            <div class="row justify-content-center">
                 <div class="col-md-12 heading-section text-center ftco-animate">
-                    <span class="subheading">Pacific Provide Places</span>
-                    <h2 class="mb-4">Select Your Destination</h2>
+                    <h2 class="mb-4">Peta Destinasi</h2>
                 </div>
             </div>
-        </div>
-        <div class="container container-2">
             <div class="row">
-                <div class="col-md-12">
-                    <div class="carousel-destination owl-carousel ftco-animate">
-                        <div class="item">
-                            <div class="project-destination">
-                                <a href="#" class="img" style="background-image: url(images/place-1.jpg);">
-                                    <div class="text">
-                                        <h3>Philippines</h3>
-                                        <span>8 Tours</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="project-destination">
-                                <a href="#" class="img" style="background-image: url(images/place-2.jpg);">
-                                    <div class="text">
-                                        <h3>Canada</h3>
-                                        <span>2 Tours</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="project-destination">
-                                <a href="#" class="img" style="background-image: url(images/place-3.jpg);">
-                                    <div class="text">
-                                        <h3>Thailand</h3>
-                                        <span>5 Tours</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="project-destination">
-                                <a href="#" class="img" style="background-image: url(images/place-4.jpg);">
-                                    <div class="text">
-                                        <h3>Autralia</h3>
-                                        <span>5 Tours</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="project-destination">
-                                <a href="#" class="img" style="background-image: url(images/place-5.jpg);">
-                                    <div class="text">
-                                        <h3>Greece</h3>
-                                        <span>7 Tours</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
+
+                <div class="col-lg-12">
+                    <div id="map" style="width: 100%;height: 500px;border-radius: 10px; z-index:1;"></div>
+                    <div id="data" style="display: none;">
+                        @foreach($datas as $item)
+                            <div class="item" data-lat="{{ $item->latitude }}" data-lng="{{ $item->longitude }}" data-nama="{{ $item->nama }}" data-deskripsi="{{ $item->deskripsi }}"></div>
+                        @endforeach
                     </div>
                 </div>
-            </div>
+
+          </div>
         </div>
-    </section> --}}
+    </section>
 
     <section class="ftco-section">
         <div class="container">
             <div class="row justify-content-center pb-4">
                 <div class="col-md-12 heading-section text-center ftco-animate">
-                    <span class="subheading">Destination</span>
-                    <h2 class="mb-4">Destination</h2>
+                    <h2 class="mb-4">Destinasi</h2>
                 </div>
             </div>
             <div class="row">
-                @foreach ($datas as $item)
+                @foreach ($datas3 as $item)
 
                 <div class="col-md-4 ftco-animate">
                     <a href="{{ route('detail',$item->id) }}">
                     <div class="project-wrap">
                        <div class="img" style="background-image: url('{{ asset($item->foto) }}');">
-                          <span class="price">Rp. {{ number_format($item->harga,0,",",".") }}/orang</span>
                        </div>
                       <div class="text p-4">
                           <span class="days">{{ $item->kategori->nama_kategori }}</span>
                           <h3>{{ ucwords($item->nama) }}</h3>
-                          <p class="location"><span class="fa fa-map-marker"></span> {{ $item->alamat }}</p>
 
                      </div>
                  </div>
@@ -222,280 +172,31 @@
         </div>
     </section>
 
-    {{-- <section class="ftco-section testimony-section bg-bottom" style="background-image: url(images/bg_1.jpg);">
-        <div class="overlay"></div>
-        <div class="container">
-            <div class="row justify-content-center pb-4">
-                <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
-                    <span class="subheading">Testimonial</span>
-                    <h2 class="mb-4">Tourist Feedback</h2>
-                </div>
-            </div>
-            <div class="row ftco-animate">
-                <div class="col-md-12">
-                    <div class="carousel-testimony owl-carousel">
-                        <div class="item">
-                            <div class="testimony-wrap py-4">
-                                <div class="text">
-                                    <p class="star">
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                    </p>
-                                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                                    <div class="d-flex align-items-center">
-                                        <div class="user-img" style="background-image: url(images/person_1.jpg)"></div>
-                                        <div class="pl-3">
-                                            <p class="name">Roger Scott</p>
-                                            <span class="position">Marketing Manager</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="testimony-wrap py-4">
-                                <div class="text">
-                                    <p class="star">
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                    </p>
-                                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                                    <div class="d-flex align-items-center">
-                                        <div class="user-img" style="background-image: url(images/person_2.jpg)"></div>
-                                        <div class="pl-3">
-                                            <p class="name">Roger Scott</p>
-                                            <span class="position">Marketing Manager</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="testimony-wrap py-4">
-                                <div class="text">
-                                    <p class="star">
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                    </p>
-                                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                                    <div class="d-flex align-items-center">
-                                        <div class="user-img" style="background-image: url(images/person_3.jpg)"></div>
-                                        <div class="pl-3">
-                                            <p class="name">Roger Scott</p>
-                                            <span class="position">Marketing Manager</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="testimony-wrap py-4">
-                                <div class="text">
-                                    <p class="star">
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                    </p>
-                                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                                    <div class="d-flex align-items-center">
-                                        <div class="user-img" style="background-image: url(images/person_1.jpg)"></div>
-                                        <div class="pl-3">
-                                            <p class="name">Roger Scott</p>
-                                            <span class="position">Marketing Manager</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="testimony-wrap py-4">
-                                <div class="text">
-                                    <p class="star">
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                    </p>
-                                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                                    <div class="d-flex align-items-center">
-                                        <div class="user-img" style="background-image: url(images/person_2.jpg)"></div>
-                                        <div class="pl-3">
-                                            <p class="name">Roger Scott</p>
-                                            <span class="position">Marketing Manager</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> --}}
+    <script>
+
+        let mapOptions = {
+            center:[-8.795349, 115.168552],
+            zoom:12
+        }
+
+        let map = new L.map('map' , mapOptions);
+
+        let layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+        map.addLayer(layer);
+
+        let dataItems = document.querySelectorAll('.item');
+        dataItems.forEach(item => {
+            let lat = item.dataset.lat;
+            let lng = item.dataset.lng;
+            let nama = item.dataset.nama;
+            let deskripsi = item.dataset.deskripsi;
+
+            var latlong = L.marker([lat, lng]);
+            latlong.addTo(map).bindPopup("<b>" + nama + "</b><br><p>" + deskripsi + "</p><a target='_BLANK' href='https://www.google.com/maps?q=" + lat + "," + lng + "'><button class='btn btn-primary btn-sm'>Lihat Pada Maps</button></a>");
+        });
 
 
-    {{-- <section class="ftco-section">
-        <div class="container">
-            <div class="row justify-content-center pb-4">
-                <div class="col-md-12 heading-section text-center ftco-animate">
-                    <span class="subheading">Our Blog</span>
-                    <h2 class="mb-4">Recent Post</h2>
-                </div>
-            </div>
-            <div class="row d-flex">
-                <div class="col-md-4 d-flex ftco-animate">
-                    <div class="blog-entry justify-content-end">
-                        <a href="blog-single.html" class="block-20" style="background-image: url('images/image_1.jpg');">
-                        </a>
-                        <div class="text">
-                            <div class="d-flex align-items-center mb-4 topp">
-                                <div class="one">
-                                    <span class="day">11</span>
-                                </div>
-                                <div class="two">
-                                    <span class="yr">2020</span>
-                                    <span class="mos">September</span>
-                                </div>
-                            </div>
-                            <h3 class="heading"><a href="#">Most Popular Place In This World</a></h3>
-                            <!-- <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p> -->
-                            <p><a href="#" class="btn btn-primary">Read more</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 d-flex ftco-animate">
-                    <div class="blog-entry justify-content-end">
-                        <a href="blog-single.html" class="block-20" style="background-image: url('images/image_2.jpg');">
-                        </a>
-                        <div class="text">
-                            <div class="d-flex align-items-center mb-4 topp">
-                                <div class="one">
-                                    <span class="day">11</span>
-                                </div>
-                                <div class="two">
-                                    <span class="yr">2020</span>
-                                    <span class="mos">September</span>
-                                </div>
-                            </div>
-                            <h3 class="heading"><a href="#">Most Popular Place In This World</a></h3>
-                            <!-- <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p> -->
-                            <p><a href="#" class="btn btn-primary">Read more</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 d-flex ftco-animate">
-                    <div class="blog-entry">
-                        <a href="blog-single.html" class="block-20" style="background-image: url('images/image_3.jpg');">
-                        </a>
-                        <div class="text">
-                            <div class="d-flex align-items-center mb-4 topp">
-                                <div class="one">
-                                    <span class="day">11</span>
-                                </div>
-                                <div class="two">
-                                    <span class="yr">2020</span>
-                                    <span class="mos">September</span>
-                                </div>
-                            </div>
-                            <h3 class="heading"><a href="#">Most Popular Place In This World</a></h3>
-                            <!-- <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p> -->
-                            <p><a href="#" class="btn btn-primary">Read more</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> --}}
 
-    <section class="ftco-intro ftco-section ftco-no-pt">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-12 text-center">
-                    <div class="img"  style="background-image: url(images/bg_2.jpg);">
-                        <div class="overlay"></div>
-                        <h2>We Are Pacific A Travel Agency</h2>
-                        <p>We can manage your dream building A small river named Duden flows by their place</p>
-                        <p class="mb-0"><a href="#" class="btn btn-primary px-4 py-3">Ask For A Quote</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-</section>
-
-<footer class="ftco-footer bg-bottom ftco-no-pt" style="background-image: url(images/bg_3.jpg);">
-        <div class="container">
-            <div class="row mb-5">
-                <div class="col-md pt-5">
-                    <div class="ftco-footer-widget pt-md-5 mb-4">
-                        <h2 class="ftco-heading-2">About</h2>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                        <ul class="ftco-footer-social list-unstyled float-md-left float-lft">
-                            <li class="ftco-animate"><a href="#"><span class="fa fa-twitter"></span></a></li>
-                            <li class="ftco-animate"><a href="#"><span class="fa fa-facebook"></span></a></li>
-                            <li class="ftco-animate"><a href="#"><span class="fa fa-instagram"></span></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md pt-5 border-left">
-                    <div class="ftco-footer-widget pt-md-5 mb-4 ml-md-5">
-                        <h2 class="ftco-heading-2">Infromation</h2>
-                        <ul class="list-unstyled">
-                            <li><a href="#" class="py-2 d-block">Online Enquiry</a></li>
-                            <li><a href="#" class="py-2 d-block">General Enquiries</a></li>
-                            <li><a href="#" class="py-2 d-block">Booking Conditions</a></li>
-                            <li><a href="#" class="py-2 d-block">Privacy and Policy</a></li>
-                            <li><a href="#" class="py-2 d-block">Refund Policy</a></li>
-                            <li><a href="#" class="py-2 d-block">Call Us</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md pt-5 border-left">
-                    <div class="ftco-footer-widget pt-md-5 mb-4">
-                        <h2 class="ftco-heading-2">Experience</h2>
-                        <ul class="list-unstyled">
-                            <li><a href="#" class="py-2 d-block">Adventure</a></li>
-                            <li><a href="#" class="py-2 d-block">Hotel and Restaurant</a></li>
-                            <li><a href="#" class="py-2 d-block">Beach</a></li>
-                            <li><a href="#" class="py-2 d-block">Nature</a></li>
-                            <li><a href="#" class="py-2 d-block">Camping</a></li>
-                            <li><a href="#" class="py-2 d-block">Party</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md pt-5 border-left">
-                    <div class="ftco-footer-widget pt-md-5 mb-4">
-                        <h2 class="ftco-heading-2">Have a Questions?</h2>
-                        <div class="block-23 mb-3">
-                            <ul>
-                                <li><span class="icon fa fa-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-                                <li><a href="#"><span class="icon fa fa-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-                                <li><a href="#"><span class="icon fa fa-paper-plane"></span><span class="text">info@yourdomain.com</span></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 text-center">
-
-                    <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-                    </div>
-                </div>
-            </div>
-</footer>
+    </script>
 
 @endsection

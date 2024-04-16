@@ -24,13 +24,24 @@
     <section class="ftco-section">
         <div class="container">
             <div class="row">
+                <div class="col-lg-12" style="margin-bottom: 70px;">
+                    <h4 class="h4">Peta Destinasi</h4>
+                    <div id="map" style="width: 100%;height: 500px;border-radius: 10px;z-index:1;"></div>
+                    <div id="data" style="display: none;">
+                        @foreach($datas as $item)
+                            <div class="item" data-lat="{{ $item->latitude }}" data-lng="{{ $item->longitude }}" data-nama="{{ $item->nama }}" data-deskripsi="{{ $item->deskripsi }}"></div>
+                        @endforeach
+                    </div>
+                </div>
+
+                <div class="col-lg-12">
+                    <h4 class="h4">Daftar Destinasi</h4>
+                </div>
                 @foreach ($datas as $item)
                     <div class="col-md-4 ftco-animate">
-                        <a id="mapnext" href="{{ route('detail', $item->id) }}"
-                            onclick="myMap({{ $item->latitude }},{{ $item->longitude }})">
+                        <a id="mapnext" href="{{ route('detail', $item->id) }}">
                             <div class="project-wrap">
                                 <div class="img" style="background-image: url('{{ asset($item->foto) }}');">
-                                    <span class="price">Rp. {{ number_format($item->harga, 0, ',', '.') }}/orang</span>
                                 </div>
                                 <div class="text p-4">
                                     <span class="days">{{ $item->kategori->nama_kategori }}</span>
@@ -43,102 +54,35 @@
                     </div>
                 @endforeach
 
+
             </div>
         </div>
     </section>
 
-    <!-- Google map html -->
+    <script>
 
-    <div class="container mb-5">
-        <div id="mapid" style="width:100%; height:300px;"></div>
-    </div>
+        let mapOptions = {
+            center:[-8.795349, 115.168552],
+            zoom:12
+        }
 
-    <section class="ftco-intro ftco-section ftco-no-pt">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-12 text-center">
-                    <div class="img" style="background-image: url(images/bg_2.jpg);">
-                        <div class="overlay"></div>
-                        <h2>We Are Pacific A Travel Agency</h2>
-                        <p>We can manage your dream building A small river named Duden flows by their place</p>
-                        <p class="mb-0"><a href="#" class="btn btn-primary px-4 py-3">Ask For A Quote</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        let map = new L.map('map' , mapOptions);
 
-    <footer class="ftco-footer bg-bottom ftco-no-pt" style="background-image: url(images/bg_3.jpg);">
-        <div class="container">
-            <div class="row mb-5">
-                <div class="col-md pt-5">
-                    <div class="ftco-footer-widget pt-md-5 mb-4">
-                        <h2 class="ftco-heading-2">About</h2>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there
-                            live the blind texts.</p>
-                        <ul class="ftco-footer-social list-unstyled float-md-left float-lft">
-                            <li class="ftco-animate"><a href="#"><span class="fa fa-twitter"></span></a></li>
-                            <li class="ftco-animate"><a href="#"><span class="fa fa-facebook"></span></a></li>
-                            <li class="ftco-animate"><a href="#"><span class="fa fa-instagram"></span></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md pt-5 border-left">
-                    <div class="ftco-footer-widget pt-md-5 mb-4 ml-md-5">
-                        <h2 class="ftco-heading-2">Infromation</h2>
-                        <ul class="list-unstyled">
-                            <li><a href="#" class="py-2 d-block">Online Enquiry</a></li>
-                            <li><a href="#" class="py-2 d-block">General Enquiries</a></li>
-                            <li><a href="#" class="py-2 d-block">Booking Conditions</a></li>
-                            <li><a href="#" class="py-2 d-block">Privacy and Policy</a></li>
-                            <li><a href="#" class="py-2 d-block">Refund Policy</a></li>
-                            <li><a href="#" class="py-2 d-block">Call Us</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md pt-5 border-left">
-                    <div class="ftco-footer-widget pt-md-5 mb-4">
-                        <h2 class="ftco-heading-2">Experience</h2>
-                        <ul class="list-unstyled">
-                            <li><a href="#" class="py-2 d-block">Adventure</a></li>
-                            <li><a href="#" class="py-2 d-block">Hotel and Restaurant</a></li>
-                            <li><a href="#" class="py-2 d-block">Beach</a></li>
-                            <li><a href="#" class="py-2 d-block">Nature</a></li>
-                            <li><a href="#" class="py-2 d-block">Camping</a></li>
-                            <li><a href="#" class="py-2 d-block">Party</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md pt-5 border-left">
-                    <div class="ftco-footer-widget pt-md-5 mb-4">
-                        <h2 class="ftco-heading-2">Have a Questions?</h2>
-                        <div class="block-23 mb-3">
-                            <ul>
-                                <li><span class="icon fa fa-map-marker"></span><span class="text">203 Fake St. Mountain
-                                        View, San Francisco, California, USA</span></li>
-                                <li><a href="#"><span class="icon fa fa-phone"></span><span class="text">+2 392
-                                            3929 210</span></a></li>
-                                <li><a href="#"><span class="icon fa fa-paper-plane"></span><span
-                                            class="text">info@yourdomain.com</span></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 text-center">
+        let layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+        map.addLayer(layer);
 
-                    <p>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        Copyright &copy;
-                        <script>
-                            document.write(new Date().getFullYear());
-                        </script> All rights reserved | This template is made with <i class="fa fa-heart"
-                            aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    </p>
-                </div>
-            </div>
-        </div>
-    </footer>
+        let dataItems = document.querySelectorAll('.item');
+        dataItems.forEach(item => {
+            let lat = item.dataset.lat;
+            let lng = item.dataset.lng;
+            let nama = item.dataset.nama;
+            let deskripsi = item.dataset.deskripsi;
+
+            var latlong = L.marker([lat, lng]);
+            latlong.addTo(map).bindPopup("<b>" + nama + "</b><br><p>" + deskripsi + "</p><a target='_BLANK' href='https://www.google.com/maps?q=" + lat + "," + lng + "'><button class='btn btn-primary btn-sm'>Lihat Pada Maps</button></a>");
+        });
+
+
+
+    </script>
 @endsection

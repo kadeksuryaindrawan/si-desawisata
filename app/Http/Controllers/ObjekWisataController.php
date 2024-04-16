@@ -24,7 +24,7 @@ class ObjekWisataController extends Controller
             $id_user = Auth::user()->id;
             $datas = ObjekWisata::where('pengelola_id','=',$id_user)->orderBy('created_at','DESC')->get();
         }
-        
+
         return view('admin.objekwisata.index',compact('datas'));
     }
 
@@ -50,7 +50,6 @@ class ObjekWisataController extends Controller
         $request->validate([
             'kategori_id' => 'required',
             'nama'=>['required', 'string', 'max:255','unique:objek_wisatas'],
-            'harga'=>['required'],
             'alamat'=>['required', 'string'],
             'longitude'=>['required', 'string'],
             'latitude'=>['required', 'string'],
@@ -68,7 +67,6 @@ class ObjekWisataController extends Controller
                 'pengelola_id' => NULL,
                 'kategori_id' => $request->kategori_id,
                 'nama' => $request->nama,
-                'harga' => $request->harga,
                 'alamat' => $request->alamat,
                 'longitude' => $request->longitude,
                 'latitude' => $request->latitude,
@@ -122,7 +120,6 @@ class ObjekWisataController extends Controller
             $request->validate([
                 'kategori_id' => 'required',
                 'nama'=>['required', 'string', 'max:255'],
-                'harga'=>['required'],
                 'alamat'=>['required', 'string'],
                 'longitude'=>['required', 'string'],
                 'latitude'=>['required', 'string'],
@@ -134,7 +131,6 @@ class ObjekWisataController extends Controller
             $request->validate([
                 'kategori_id' => 'required',
                 'nama'=>['required', 'string', 'max:255','unique:objek_wisatas'],
-                'harga'=>['required'],
                 'alamat'=>['required', 'string'],
                 'longitude'=>['required', 'string'],
                 'latitude'=>['required', 'string'],
@@ -152,7 +148,6 @@ class ObjekWisataController extends Controller
                 ObjekWisata::where('id',$id)->update([
                     'kategori_id' => $request->kategori_id,
                     'nama' => $request->nama,
-                    'harga' => $request->harga,
                     'alamat' => $request->alamat,
                     'longitude' => $request->longitude,
                     'latitude' => $request->latitude,
@@ -166,7 +161,6 @@ class ObjekWisataController extends Controller
                 ObjekWisata::where('id',$id)->update([
                     'kategori_id' => $request->kategori_id,
                     'nama' => $request->nama,
-                    'harga' => $request->harga,
                     'alamat' => $request->alamat,
                     'longitude' => $request->longitude,
                     'latitude' => $request->latitude,
@@ -178,7 +172,7 @@ class ObjekWisataController extends Controller
         }catch(\Throwable $th){
             throw $th;
         }
-        
+
     }
 
     /**
@@ -236,7 +230,7 @@ class ObjekWisataController extends Controller
             ]);
             return redirect()->route('objekwisata.index')->with('success', 'Pengelola objek wisata berhasil dipilih!');
         }
-        
-        
+
+
     }
 }

@@ -5,17 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hidems - {{ $title }}</title>
-    
+
     <link rel="stylesheet" href="{{ asset('dashboard/css/main/app.css') }}">
     <link rel="shortcut icon" href="{{ asset('images/icon.png') }}">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-    
+
 <link rel="stylesheet" href="{{ asset('dashboard/css/shared/iconly.css') }}">
 <link rel="stylesheet" href="{{ asset('dashboard/css/pages/fontawesome.css') }}">
 <link rel="stylesheet" href="{{ asset('dashboard/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css') }}">
 <link rel="stylesheet" href="{{ asset('dashboard/css/pages/datatables.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('dashboard/css/lightbox.css') }}">
 <script type="text/javascript" src="{{ asset('dashboard/js/jquery-3.6.0.min.js') }}"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
 </head>
 
@@ -29,12 +31,12 @@
                 <a href="{{ url('/') }}"> <h5 class="text-primary">Hidems</h5></a>
             </div>
             <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
-                
+
                 <div class="form-check">
                     <input class="form-check-input  me-0" type="hidden" id="toggle-dark" >
                     <label class="form-check-label" ></label>
                 </div>
-               
+
             </div>
             <div class="sidebar-toggler  x">
                 <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
@@ -44,7 +46,7 @@
     <div class="sidebar-menu">
         <ul class="menu list-unstyled">
             <li class="sidebar-title">Menu</li>
-            
+
             @if (Auth::user()->hasRole('Admin') || Auth::user()->hasRole('Pengelola'))
             <li <?php if($page == "dashboard") echo "class='sidebar-item active'";?>>
                 <a href="{{ route('home') }}" class='sidebar-link'>
@@ -54,15 +56,6 @@
             </li>
             @endif
 
-            @if (Auth::user()->hasRole('Pengunjung'))
-            <li <?php if($page == "dashboard") echo "class='sidebar-item active'";?>>
-                <a href="{{ route('dashboard') }}" class='sidebar-link'>
-                    <i class="bi bi-grid-fill"></i>
-                    <span>Dashboard</span>
-                </a>
-            </li>
-            @endif
-            
             @if (Auth::user()->hasRole('Admin'))
             <li <?php if($page == "pengelola") echo "class='sidebar-item active'";?>>
                 <a href="{{ route('pengelola.index') }}" class='sidebar-link'>
@@ -83,29 +76,12 @@
                 </a>
             </li>
             @endif
-            
+
             @if (Auth::user()->hasRole('Pengelola'))
             <li <?php if($page == "objekwisata") echo "class='sidebar-item active'";?>>
                 <a href="{{ route('objekwisata.index') }}" class='sidebar-link'>
                     <i class="bi bi-flower1"></i>
                     <span>Objek Wisata</span>
-                </a>
-            </li>
-            @endif
-            
-            <li <?php if($page == "transaksi") echo "class='sidebar-item active'";?>>
-                <a href="{{ route('transaksi.index') }}" class='sidebar-link'>
-                    <i class="bi bi-currency-dollar"></i>
-                    <span>Transaksi</span>
-                </a>
-            </li>
-
-            @if (Auth::user()->hasRole('Admin') || Auth::user()->hasRole('Pengelola'))
-
-            <li <?php if($page == "laporan") echo "class='sidebar-item active'";?>>
-                <a href="{{ route('laporan.index') }}" class='sidebar-link'>
-                    <i class="bi bi-file-earmark"></i>
-                    <span>Laporan</span>
                 </a>
             </li>
             @endif
@@ -122,7 +98,7 @@
                         </a>
                     </div>
                     <div class="col-4 mt-2">
-                        
+
                     </div>
                     <div class="col-2 mt-2">
                         <a class="float-end" href="{{ route('logout') }}"
@@ -135,7 +111,7 @@
                         </form>
                     </div>
 
-                    
+
                 </div>
             </header>
 
@@ -156,7 +132,7 @@
     </div>
     <script src="{{ asset('dashboard/js/bootstrap.js') }}"></script>
     <script src="{{ asset('dashboard/js/app.js') }}"></script>
-    
+
 <!-- Need: Apexcharts -->
 <script src="{{ asset('dashboard/extensions/apexcharts/apexcharts.min.js') }}"></script>
 <script src="{{ asset('dashboard/js/pages/dashboard.js') }}"></script>

@@ -48,15 +48,15 @@
                                         <p>Pengelola : <strong>{{ $data->pengelola->name }}</strong></p>
                                     @endif
 
-                                    <p>Harga Tiket : <strong>Rp. {{ number_format($data->harga,0,",",".") }}</strong></p>
                                     <p>Alamat : <strong>{{ $data->alamat }}</strong></p>
-                                    <p>Longitude : <strong>{{ $data->longitude }}</strong></p>
-                                    <p>Latitude : <strong>{{ $data->latitude }}</strong></p>
+                                    <div class="col-lg-12 mb-5">
+                                        <div id="map" style="width: 100%;height: 200px;border-radius: 10px;"></div>
+                                    </div>
                                     <p>Deskripsi : <strong>{{ $data->deskripsi }}</strong></p>
                                     <p>Fasilitas : <strong>{{ $data->fasilitas }}</strong></p>
 
                                 </div>
-                                 
+
                             </div>
                             <div class="row">
                                 <a href="{{ route('objekwisata.index') }}" class="d-flex justify-content-center w-full">
@@ -72,5 +72,22 @@
     <!-- // Basic Vertical form layout section end -->
 </div>
 
+    <script>
+        let mapOptions = {
+            center:[{{ $data->latitude }}, {{ $data->longitude }}],
+            zoom:13
+        }
+
+        let map = new L.map('map' , mapOptions);
+
+        let layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+        map.addLayer(layer);
+
+        var latlong = L.marker([{{ $data->latitude }}, {{ $data->longitude }}]);
+
+        latlong.addTo(map).bindPopup("<b>{{ ucwords($data->nama) }}</b><br><p>{{ ucfirst($data->deskripsi) }}</p><a target='_BLANK' href='https://www.google.com/maps?q={{ $data->latitude }}, {{ $data->longitude }}'><button class='btn btn-primary btn-sm'>Lihat Pada Maps</button></a>");
+
+
+    </script>
 
 @endsection
