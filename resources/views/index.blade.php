@@ -10,7 +10,7 @@
     <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center" data-scrollax-parent="true">
             <div class="col-md-7 ftco-animate">
-                <span class="subheading">Welcome to Hidden Gems of Kuta Selatan</span>
+                <span class="subheading">Welcome to Hidden Gems of Kuta Selatans</span>
                 <h1 class="mb-4">Temukan Tempat Favorit Anda Bersama Kami</h1>
                 <p class="caps">Bepergian ke sudut manapun di Kuta Selatan, tanpa ribet</p>
             </div>
@@ -45,7 +45,7 @@
                                     <h3 class="heading mb-3">Activities</h3>
                                     <p>A small river named Duden flows by their place and supplies it with the necessary</p>
                                 </div>
-                            </div>      
+                            </div>
                         </div>
                         <div class="col-md-12 col-lg-6 d-flex align-self-stretch ftco-animate">
                             <div class="services services-1 color-2 d-block img" style="background-image: url('{{ asset('images/services-2.jpg') }}');">
@@ -54,7 +54,7 @@
                                     <h3 class="heading mb-3">Travel Arrangements</h3>
                                     <p>A small river named Duden flows by their place and supplies it with the necessary</p>
                                 </div>
-                            </div>    
+                            </div>
                         </div>
                         <div class="col-md-12 col-lg-6 d-flex align-self-stretch ftco-animate">
                             <div class="services services-1 color-3 d-block img" style="background-image: url('{{ asset('images/services-3.jpg') }}');">
@@ -63,7 +63,7 @@
                                     <h3 class="heading mb-3">Private Guide</h3>
                                     <p>A small river named Duden flows by their place and supplies it with the necessary</p>
                                 </div>
-                            </div>      
+                            </div>
                         </div>
                         <div class="col-md-12 col-lg-6 d-flex align-self-stretch ftco-animate">
                             <div class="services services-1 color-4 d-block img" style="background-image: url('{{ asset('images/services-4.jpg') }}');">
@@ -72,7 +72,7 @@
                                     <h3 class="heading mb-3">Location Manager</h3>
                                     <p>A small river named Duden flows by their place and supplies it with the necessary</p>
                                 </div>
-                            </div>      
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -159,7 +159,7 @@
             </div>
             <div class="row">
                 @foreach ($datas as $item)
-                
+
                 <div class="col-md-4 ftco-animate">
                     <a href="{{ route('detail',$item->id) }}">
                     <div class="project-wrap">
@@ -170,20 +170,20 @@
                           <span class="days">{{ $item->kategori->nama_kategori }}</span>
                           <h3>{{ ucwords($item->nama) }}</h3>
                           <p class="location"><span class="fa fa-map-marker"></span> {{ $item->alamat }}</p>
-                          
+
                      </div>
                  </div>
                 </a>
              </div>
-            
+
                 @endforeach
-                 
-             
-        
+
+
+
           </div>
         </div>
     </section>
-    
+
     <section class="ftco-section ftco-about img"style="background-image: url('{{ asset('images/bg_4.jpg') }}');">
         <div class="overlay"></div>
         <div class="container py-md-5">
@@ -497,5 +497,5 @@
                 </div>
             </div>
 </footer>
-    
+
 @endsection
