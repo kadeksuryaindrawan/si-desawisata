@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DeleteTemporaryImageController;
 use App\Http\Controllers\KategoriController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -8,6 +9,7 @@ use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\ObjekWisataController;
 use App\Http\Controllers\PengelolaController;
 use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\UploadTemporaryImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +49,9 @@ Route::group(['middleware' => ['role:Admin','auth']],function(){
     Route::put('/pilihpengelola/{id}',[ObjekWisataController::class,'tambahPengelola'])->name('tambahpengelola');
 
     Route::resource('kategori',KategoriController::class);
+
+    Route::post('/upload', UploadTemporaryImageController::class)->name('uploadtemporary');
+    Route::delete('/delete', DeleteTemporaryImageController::class)->name('deletetemporary');
 });
 
 //pengelola

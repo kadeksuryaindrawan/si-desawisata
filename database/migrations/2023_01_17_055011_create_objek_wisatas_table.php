@@ -23,7 +23,6 @@ class CreateObjekWisatasTable extends Migration
             $table->text('latitude');
             $table->text('deskripsi');
             $table->text('fasilitas');
-            $table->text('foto');
             $table->timestamps();
         });
     }

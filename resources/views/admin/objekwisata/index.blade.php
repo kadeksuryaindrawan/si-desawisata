@@ -56,7 +56,6 @@
                                 <thead>
                                     <tr>
                                         <th>NO</th>
-                                        <th>Foto</th>
                                         <th>Pengelola</th>
                                         <th>Kategori</th>
                                         <th>Nama Objek Wisata</th>
@@ -70,11 +69,6 @@
                                         @foreach ($datas as $item)
                                             <tr>
                                                 <td>{{ $no++ }}</td>
-                                                <td>
-                                                    <a class="example-image-link"
-                                                     href="{{ asset($item->foto) }}" data-lightbox="example-1">
-                                                     <img style="width: 50px; height:50px;" src="{{ asset($item->foto) }}" alt=""></a>
-                                                </td>
 
                                                 @if ($item->pengelola_id == NULL)
                                                     <td class="text-danger">Pengelola Belum Ada</td>
@@ -102,7 +96,7 @@
                                                             <form action="{{route('objekwisata.destroy',$item->id)}}" method="post">
                                                                 @csrf
                                                                 @method('delete')
-                                                                <button class="dropdown-item"><i class="bi bi-trash"></i> Hapus</button>
+                                                                <button class="dropdown-item" onclick="return confirm('Yakin hapus objek wisata?')"><i class="bi bi-trash"></i> Hapus</button>
                                                               </form>
                                                             @endif
 

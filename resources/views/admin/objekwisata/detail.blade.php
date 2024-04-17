@@ -33,12 +33,15 @@
                     <div class="card-content">
                         <div class="card-body">
                             <div class="row mb-10">
-                                <div class="col-6">
-                                    <a class="example-image-link"
-                                                     href="{{ asset($data->foto) }}" data-lightbox="example-1">
-                                                     <img src="{{ asset($data->foto) }}" alt="" width="100%"></a>
+                                <div class="col-12 mb-5">
+                                    <p>Foto :</p>
+                                    @foreach ($images as $image)
+                                        <a class="example-image-link"
+                                        href="{{ asset('images/objekwisata/'.$image->folder.'/'.$image->name) }}" data-lightbox="example-1">
+                                        <img style="width: 120px; height:100px; object-fit:cover;" src="{{ asset('images/objekwisata/'.$image->folder.'/'.$image->name) }}" alt=""></a>
+                                    @endforeach
                                 </div>
-                                <div class="col-6">
+                                <div class="col-12">
                                     <p>Nama Objek Wisata : <strong>{{ $data->nama }}</strong></p>
                                     <p>Kategori : <strong>{{ $data->kategori->nama_kategori }}</strong></p>
                                     @if ($data->pengelola_id == NULL)

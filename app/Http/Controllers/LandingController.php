@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Image;
 use App\Models\ObjekWisata;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,8 @@ class LandingController extends Controller
 
     public function detail($id){
         $data = ObjekWisata::find($id);
-        return view('detail',compact('data'));
+        $images = Image::where('objek_wisata_id', $id)->get();
+        return view('detail',compact('data','images'));
     }
 
     public function contact(){

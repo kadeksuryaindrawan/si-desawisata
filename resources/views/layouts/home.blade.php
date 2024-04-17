@@ -26,10 +26,16 @@
     <link rel="stylesheet" href="{{ asset('css/flaticon.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
+    <link rel="stylesheet" href="{{ asset('css/slick.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/slick-theme.css') }}">
+
     <link rel="shortcut icon" href="{{ asset('images/icon.png') }}">
 
     <link rel="stylesheet" type="text/css" href="{{ asset('dashboard/css/lightbox.css') }}">
+
     <script type="text/javascript" src="{{ asset('dashboard/js/jquery-3.6.0.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/slick.min.js') }}"></script>
+
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
@@ -159,6 +165,7 @@
     <script src="{{ asset('js/jquery.easing.1.3.js') }}"></script>
     <script src="{{ asset('js/jquery.waypoints.min.js') }}"></script>
     <script src="{{ asset('js/jquery.stellar.min.js') }}"></script>
+    <script src="{{ asset('owl-carousel/owl.carousel.js') }}"></script><!-- OWL SLIDER -->
     <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
     <script src="{{ asset('js/jquery.animateNumber.min.js') }}"></script>

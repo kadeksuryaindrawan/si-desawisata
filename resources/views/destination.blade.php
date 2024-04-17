@@ -11,9 +11,9 @@
             <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
                 <div class="col-md-9 ftco-animate pb-5 text-center">
                     <p class="breadcrumbs"><span class="mr-2"><a href="{{ url('/') }}">Home <i
-                                    class="fa fa-chevron-right"></i></a></span> <span>Tour List <i
+                                    class="fa fa-chevron-right"></i></a></span> <span>Destination <i
                                 class="fa fa-chevron-right"></i></span></p>
-                    <h1 class="mb-0 bread">Tours List</h1>
+                    <h1 class="mb-0 bread">Destination</h1>
                 </div>
             </div>
         </div>
@@ -39,17 +39,16 @@
                 </div>
                 @foreach ($datas as $item)
                     <div class="col-md-4 ftco-animate">
-                        <a id="mapnext" href="{{ route('detail', $item->id) }}">
-                            <div class="project-wrap">
-                                <div class="img" style="background-image: url('{{ asset($item->foto) }}');">
-                                </div>
-                                <div class="text p-4">
-                                    <span class="days">{{ $item->kategori->nama_kategori }}</span>
-                                    <h3>{{ ucwords($item->nama) }}</h3>
-                                    <p class="location"><span class="fa fa-map-marker"></span> {{ $item->alamat }}</p>
-
-                                </div>
+                        <a href="{{ route('detail',$item->id) }}">
+                        <div class="project-wrap">
+                            @foreach ($item->images as $image)
+                            @endforeach
+                            <div class="img" style="background-image: url('{{ asset('images/objekwisata/'.$image->folder.'/'.$image->name) }}');"></div>
+                            <div class="text p-4">
+                                <span class="days">{{ $item->kategori->nama_kategori }}</span>
+                                <h3>{{ ucwords($item->nama) }}</h3>
                             </div>
+                        </div>
                         </a>
                     </div>
                 @endforeach

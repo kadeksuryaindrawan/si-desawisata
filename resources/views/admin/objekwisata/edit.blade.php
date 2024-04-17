@@ -90,16 +90,6 @@
                                                 <textarea class="form-control" id="fasilitas" rows="3" name="fasilitas" required>{{ $data->fasilitas }}</textarea>
                                             </div>
                                         </div>
-                                        <div class="col-12">
-                                            <div class="form-group">
-                                                <label for="email-id-vertical">Foto Objek Wisata</label><br>
-                                                <a class="example-image-link"
-                                                     href="{{ asset($data->foto) }}" data-lightbox="example-1">
-                                                     <img style="width: 70px; height:70px; padding:5px;" src="{{ asset($data->foto) }}" alt=""></a>
-                                                <input type="file" id="email-id-vertical" class="form-control"
-                                                    name="foto" placeholder="Foto Objek Wisata">
-                                            </div>
-                                        </div>
                                         <div class="col-12 d-flex justify-content-center">
                                             <button type="submit" class="btn btn-primary me-1 my-2 w-100">Simpan</button>
                                         </div>

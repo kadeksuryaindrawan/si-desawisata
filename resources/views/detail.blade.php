@@ -13,6 +13,7 @@
                     <p class="breadcrumbs"><span class="mr-2"><a href="{{ url('/') }}">Home <i
                                     class="fa fa-chevron-right"></i></a></span> <span>Destination Detail <i
                                 class="fa fa-chevron-right"></i></span></p>
+
                     <h1 class="mb-0 bread">Destination Detail</h1>
                 </div>
             </div>
@@ -22,50 +23,31 @@
     <section class="ftco-section">
         <div class="container">
             <div class="row">
-                <div class="col-lg-5 mt-5">
-                    <div class="card mb-3">
-                        <a class="example-image-link" href="{{ asset($data->foto) }}" data-lightbox="example-1">
-                            <img class="card-img img-fluid" src="{{ asset($data->foto) }}" alt="Card image cap"
-                                id="product-detail"></a>
-
-                    </div>
-                </div>
-                <!-- col end -->
-                <div class="col-lg-7 mt-5">
-                    <div class="card">
-                        <div class="card-body">
-                            <h1 class="h2">{{ ucwords($data->nama) }}</h1>
-
-                            <ul class="list-inline">
-                                <li class="list-inline-item">
-                                    <h6>Kategori :</h6>
-                                </li>
-                                <li class="list-inline-item">
-                                    <p class="text-muted"><strong>{{ $data->kategori->nama_kategori }}</strong></p>
-                                </li>
-                            </ul>
-
-                            <h6>Alamat :</h6>
-                            <p><strong>{{ $data->alamat }}</strong></p>
-
-                            <h6>Deskripsi :</h6>
-                            <p>{{ $data->deskripsi }}</p>
-                            <ul class="list-inline">
-                                <li class="list-inline-item">
-                                    <h6>Fasilitas :</h6>
-                                </li>
-                                <li class="list-inline-item">
-                                    <p class="text-muted"><strong>{{ $data->fasilitas }}</strong></p>
-                                </li>
-                            </ul>
-                            <div class="row pb-3">
-                                <div class="col d-grid">
-                                    <a href="{{ url('/destination') }}"><button class="btn btn-secondary btn-lg w-100"
-                                            name="submit">Kembali</button></a>
-                                </div>
+                <div class="col-lg-6 mt-5">
+                    <div class="owl-slider owl-carousel owl-theme owl-btn-center-lr dots-none">
+                        @foreach ($images as $image)
+                        <div class="item slide-item">
+                            <div class="slide-item-img">
+                                <a class="example-image-link"href="{{ asset('images/objekwisata/'.$image->folder.'/'.$image->name) }}" data-lightbox="example-1">
+                                    <img style="width: 100%; height:500px; object-fit:cover;" src="{{ asset('images/objekwisata/'.$image->folder.'/'.$image->name) }}" alt="">
+                                </a>
                             </div>
                         </div>
-                    </div>
+                        @endforeach
+
+		            </div>
+                </div>
+                <!-- col end -->
+                <div class="col-lg-6 mt-5">
+                    <h2 class="h2">{{ ucwords($data->nama) }}</h2>
+                    <p>Kategori : <span class="text-primary">{{ ucwords($data->kategori->nama_kategori) }}</span></p>
+                    <p>Alamat : <span>{{ ucfirst($data->alamat) }}</span></p>
+                    <p>Fasilitas : <span>{{ ucfirst($data->fasilitas) }}</span></p>
+                </div>
+
+                <div class="col-lg-12"  style="margin-top: 50px;">
+                    <h5 class="h5">Deskripsi</h5>
+                    <p>{{ ucfirst($data->deskripsi) }}</p>
                 </div>
 
                 <div class="col-lg-12" style="margin-top: 70px;">
@@ -94,5 +76,16 @@
 
     </script>
 
-
+    <script>
+    $(document).ready(function(){
+        var owl = $(".owl-carousel");
+        owl.owlCarousel({
+            items: 1,
+            autoplay: true,
+            autoPlaySpeed: 5000,
+            autoPlayTimeout: 5000,
+            autoplayHoverPause: true
+        });
+    });
+    </script>
 @endsection

@@ -15,9 +15,16 @@
 <link rel="stylesheet" href="{{ asset('dashboard/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css') }}">
 <link rel="stylesheet" href="{{ asset('dashboard/css/pages/datatables.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('dashboard/css/lightbox.css') }}">
+<link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
+    <link
+    href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
+    rel="stylesheet"
+/>
 <script type="text/javascript" src="{{ asset('dashboard/js/jquery-3.6.0.min.js') }}"></script>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+<script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
 
 </head>
 

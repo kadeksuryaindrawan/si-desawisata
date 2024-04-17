@@ -18,7 +18,6 @@ class ObjekWisata extends Model
         'latitude',
         'deskripsi',
         'fasilitas',
-        'foto',
     ];
 
     public function kategori(){
@@ -27,5 +26,10 @@ class ObjekWisata extends Model
 
     public function pengelola(){
         return $this->belongsTo(User::class,'pengelola_id');
+    }
+
+    public function images()
+    {
+        return $this->hasMany(Image::class);
     }
 }

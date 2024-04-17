@@ -115,12 +115,13 @@
                 <div class="col-md-4 ftco-animate">
                     <a href="{{ route('detail',$item->id) }}">
                     <div class="project-wrap">
-                       <div class="img" style="background-image: url('{{ asset($item->foto) }}');">
-                       </div>
+                        @foreach ($item->images as $image)
+                        @endforeach
+                        <div class="img" style="background-image: url('{{ asset('images/objekwisata/'.$image->folder.'/'.$image->name) }}');">
+                    </div>
                       <div class="text p-4">
                           <span class="days">{{ $item->kategori->nama_kategori }}</span>
                           <h3>{{ ucwords($item->nama) }}</h3>
-
                      </div>
                  </div>
                 </a>

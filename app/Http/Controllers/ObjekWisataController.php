@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Image;
 use App\Models\Kategori;
 use App\Models\ObjekWisata;
+use App\Models\TemporaryImage;
 use App\Models\User;
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class ObjekWisataController extends Controller
 {
@@ -47,7 +51,7 @@ class ObjekWisataController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'kategori_id' => 'required',
             'nama'=>['required', 'string', 'max:255','unique:objek_wisatas'],
             'alamat'=>['required', 'string'],
@@ -55,15 +59,22 @@ class ObjekWisataController extends Controller
             'latitude'=>['required', 'string'],
             'deskripsi'=>['required', 'string'],
             'fasilitas'=>['required', 'string'],
-            'foto'=>['required']
         ]);
 
-        $foto = $request->file('foto');
+        $temporary_images = TemporaryImage::all();
 
-        $nama_foto = strtolower($request->nama)."-" ."foto.".$foto->getClientOriginalExtension();
+        if ($validator->fails()) {
+            foreach ($temporary_images as $temporary_image) {
+                $directoryPath = public_path('images/tmp/' . $temporary_image->folder);
+
+                File::deleteDirectory($directoryPath);
+                $temporary_image->delete();
+            }
+            return redirect()->route('objekwisata.create')->withErrors($validator)->withInput();
+        }
 
         try{
-            ObjekWisata::create([
+            $objek_wisata = ObjekWisata::create([
                 'pengelola_id' => NULL,
                 'kategori_id' => $request->kategori_id,
                 'nama' => $request->nama,
@@ -72,9 +83,19 @@ class ObjekWisataController extends Controller
                 'latitude' => $request->latitude,
                 'deskripsi' => $request->deskripsi,
                 'fasilitas' => $request->fasilitas,
-                'foto' => 'images/objekwisata/'.$nama_foto
             ]);
-            $foto->move('images/objekwisata/',$nama_foto);
+            foreach ($temporary_images as $temporary_image) {
+                File::copy(base_path('public/images/tmp/' . $temporary_image->folder . '/' . $temporary_image->file), base_path('public/images/objekwisata/' . $temporary_image->folder . '/' . $temporary_image->file));
+                Image::create([
+                    'objek_wisata_id' => $objek_wisata->id,
+                    'name' => $temporary_image->file,
+                    'folder' => $temporary_image->folder
+                ]);
+                $directoryPath = public_path('images/tmp/' . $temporary_image->folder);
+
+                File::deleteDirectory($directoryPath);
+                $temporary_image->delete();
+            }
             return redirect()->route('objekwisata.index')->with('success', 'Objek wisata berhasil ditambah!');
         }catch(\Throwable $th){
             throw $th;
@@ -90,7 +111,8 @@ class ObjekWisataController extends Controller
     public function show($id)
     {
         $data = ObjekWisata::find($id);
-        return view('admin.objekwisata.detail',compact('data'));
+        $images = Image::where('objek_wisata_id', $id)->get();
+        return view('admin.objekwisata.detail',compact('data','images'));
     }
 
     /**
@@ -140,34 +162,16 @@ class ObjekWisataController extends Controller
         }
 
         try{
-            if($request->file('foto')!==NULL){
-                unlink($data->foto);
-                $foto = $request->file('foto');
+                ObjekWisata::where('id',$id)->update([
+                    'kategori_id' => $request->kategori_id,
+                    'nama' => $request->nama,
+                    'alamat' => $request->alamat,
+                    'longitude' => $request->longitude,
+                    'latitude' => $request->latitude,
+                    'deskripsi' => $request->deskripsi,
+                    'fasilitas' => $request->fasilitas,
+                    ]);
 
-                $nama_foto = strtolower($request->nama)."-" ."foto.".$foto->getClientOriginalExtension();
-                ObjekWisata::where('id',$id)->update([
-                    'kategori_id' => $request->kategori_id,
-                    'nama' => $request->nama,
-                    'alamat' => $request->alamat,
-                    'longitude' => $request->longitude,
-                    'latitude' => $request->latitude,
-                    'deskripsi' => $request->deskripsi,
-                    'fasilitas' => $request->deskripsi,
-                    'foto' => 'images/objekwisata/'.$nama_foto
-                    ]);
-                    $foto->move('images/objekwisata/',$nama_foto);
-            }
-            else{
-                ObjekWisata::where('id',$id)->update([
-                    'kategori_id' => $request->kategori_id,
-                    'nama' => $request->nama,
-                    'alamat' => $request->alamat,
-                    'longitude' => $request->longitude,
-                    'latitude' => $request->latitude,
-                    'deskripsi' => $request->deskripsi,
-                    'fasilitas' => $request->deskripsi,
-                    ]);
-            }
             return redirect()->route('objekwisata.index')->with('success', 'Objek wisata berhasil diedit!');
         }catch(\Throwable $th){
             throw $th;
@@ -183,10 +187,14 @@ class ObjekWisataController extends Controller
      */
     public function destroy($id)
     {
-        $objek = ObjekWisata::find($id);
+        $objekwisata = ObjekWisata::find($id);
+        $images = Image::where('objek_wisata_id', $id)->get();
 
-        unlink($objek->foto);
-        ObjekWisata::destroy($id);
+        foreach($images as $image){
+            File::deleteDirectory(public_path('images/objekwisata/' . $image->folder));
+        }
+        Image::where('objek_wisata_id', $id)->delete();
+        $objekwisata->delete();
 
         return redirect()->back()->with('success', 'Objek wisata berhasil dihapus!');
     }

@@ -91,9 +91,9 @@
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <label for="email-id-vertical">Foto Objek Wisata</label>
-                                                <input type="file" id="email-id-vertical" class="form-control"
-                                                    name="foto" placeholder="Foto Objek Wisata" required>
+                                                <label for="image">Foto</label>
+                                                <input type="file" id="image" class="filepond"
+                                                    name="image" multiple credits="false" required>
                                             </div>
                                         </div>
                                         <div class="col-12 d-flex justify-content-center">
@@ -141,6 +141,23 @@
             document.getElementById('longitude').value = event.latlng.lng;
 
         })
+
+        FilePond.registerPlugin(FilePondPluginImagePreview);
+
+        const inputElement = document.querySelector('input[type="file"]');
+
+        const pond = FilePond.create(inputElement);
+
+        FilePond.setOptions({
+            acceptedFileTypes: ['image/*'],
+            server: {
+                process: '{{ route('uploadtemporary') }}',
+                revert: '{{ route('deletetemporary') }}',
+                headers:{
+                    'X_CSRF-TOKEN': '{{ csrf_token() }}'
+                }
+            },
+        });
     </script>
 
 @endsection
