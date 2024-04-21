@@ -241,4 +241,41 @@ class ObjekWisataController extends Controller
 
 
     }
+
+    public function editfoto($id)
+    {
+        $objekwisata = ObjekWisata::find($id);
+        return view('admin.objekwisata.editimg', compact('objekwisata'));
+    }
+
+    public function editfotoproses(Request $request, $id)
+    {
+        $request->validate([
+            'image' => ['required']
+        ]);
+
+        $temporary_images = TemporaryImage::all();
+
+        $images = Image::where('objek_wisata_id', $id)->get();
+        if ($images->count() > 0) {
+            foreach ($images as $image) {
+                File::deleteDirectory(public_path('images/objekwisata/' . $image->folder));
+            }
+            Image::where('objek_wisata_id', $id)->delete();
+        }
+
+        foreach ($temporary_images as $temporary_image) {
+            File::copy(base_path('public/images/tmp/' . $temporary_image->folder . '/' . $temporary_image->file), base_path('public/images/objekwisata/' . $temporary_image->folder . '/' . $temporary_image->file));
+            Image::create([
+                'objek_wisata_id' => $id,
+                'name' => $temporary_image->file,
+                'folder' => $temporary_image->folder
+            ]);
+            $directoryPath = public_path('images/tmp/' . $temporary_image->folder);
+
+            File::deleteDirectory($directoryPath);
+            $temporary_image->delete();
+        }
+        return redirect()->route('objekwisata.index')->with('success', 'Foto Objek wisata berhasil diedit!');
+    }
 }

@@ -91,6 +91,7 @@
                                                             @endif
 
                                                             <a href="{{ route('objekwisata.edit',$item->id) }}" class="dropdown-item"><i class="bi bi-pencil-square"></i> Edit</a>
+                                                            <a href="{{ route('editfoto',$item->id) }}" class="dropdown-item"><i class="bi bi-pencil-square"></i> Edit Foto</a>
 
                                                             @if (Auth::user()->hasRole('Admin'))
                                                             <form action="{{route('objekwisata.destroy',$item->id)}}" method="post">

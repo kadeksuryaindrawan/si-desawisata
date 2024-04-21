@@ -48,6 +48,9 @@ Route::group(['middleware' => ['role:Admin','auth']],function(){
     Route::get('/pilihpengelola/{id}',[ObjekWisataController::class,'pilihPengelola'])->name('pilihpengelola');
     Route::put('/pilihpengelola/{id}',[ObjekWisataController::class,'tambahPengelola'])->name('tambahpengelola');
 
+    Route::get('/editfoto/{id}', [ObjekWisataController::class, 'editfoto'])->name('editfoto');
+    Route::put('/editfotoproses/{id}', [ObjekWisataController::class, 'editfotoproses'])->name('editfotoproses');
+
     Route::resource('kategori',KategoriController::class);
 
     Route::post('/upload', UploadTemporaryImageController::class)->name('uploadtemporary');
