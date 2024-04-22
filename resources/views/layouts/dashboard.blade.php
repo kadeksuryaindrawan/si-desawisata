@@ -70,16 +70,22 @@
                     <span>Pengelola</span>
                 </a>
             </li>
+            <li <?php if($page == "kabupaten") echo "class='sidebar-item active'";?>>
+                <a href="{{ route('kabupaten.index') }}" class='sidebar-link'>
+                    <i class="bi bi-building"></i>
+                    <span>Kabupaten</span>
+                </a>
+            </li>
             <li <?php if($page == "kategori") echo "class='sidebar-item active'";?>>
                 <a href="{{ route('kategori.index') }}" class='sidebar-link'>
                     <i class="bi bi-book"></i>
                     <span>Kategori</span>
                 </a>
             </li>
-            <li <?php if($page == "objekwisata") echo "class='sidebar-item active'";?>>
+            <li <?php if($page == "desawisata") echo "class='sidebar-item active'";?>>
                 <a href="{{ route('objekwisata.index') }}" class='sidebar-link'>
                     <i class="bi bi-flower1"></i>
-                    <span>Objek Wisata</span>
+                    <span>Desa Wisata</span>
                 </a>
             </li>
             @endif

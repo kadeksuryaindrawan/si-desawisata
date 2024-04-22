@@ -11,14 +11,20 @@ class ObjekWisata extends Model
 
     protected $fillable = [
         'pengelola_id',
+        'kabupaten_id',
         'kategori_id',
         'nama',
         'alamat',
         'longitude',
         'latitude',
         'deskripsi',
-        'fasilitas',
+        'potensi_wisata',
     ];
+
+    public function kabupaten()
+    {
+        return $this->belongsTo(Kabupaten::class, 'kabupaten_id');
+    }
 
     public function kategori(){
         return $this->belongsTo(Kategori::class,'kategori_id');

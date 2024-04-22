@@ -3,8 +3,8 @@
 @section('content')
 
 @php
-    $page = 'desawisata';
-    $title = 'Desa Wisata';
+    $page = 'kabupaten';
+    $title = 'Kabupaten';
 @endphp
 
 <div class="page-heading">
@@ -16,7 +16,7 @@
                             {{$error}}
                         </div>
                         @endforeach
-                <h3>Pilih Pengelola Desa Wisata</h3>
+                <h3>Tambah Kabupaten</h3>
             </div>
         </div>
     </div>
@@ -28,27 +28,19 @@
             <div class="col-md-12 col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Form Pilih Pengelola {{ $data->nama }}</h4>
-
+                        <h4 class="card-title">Form Tambah Kabupaten</h4>
                     </div>
-
                     <div class="card-content">
                         <div class="card-body">
-                            <form action="{{route('tambahpengelola',$data->id)}}" method="POST" class="form form-vertical">
+                            <form action="{{ route('kabupaten.store') }}" method="POST" class="form form-vertical">
                                 @csrf
-                                @method('PUT')
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <label for="email-id-vertical">Pilih Pengelola</label>
-                                                <select name="pengelola_id" id="" class="form-control">
-                                                    <option value="">Pilih Pengelola</option>
-                                                    <option value="0">Tidak Ada Pengelola</option>
-                                                    @foreach ($pengelolas as $items)
-                                                        <option value="{{ $items->email }}">{{ $items->name }}</option>
-                                                    @endforeach
-                                                </select>
+                                                <label for="email-id-vertical">Nama Kabupaten</label>
+                                                <input type="text" id="email-id-vertical" class="form-control"
+                                                    name="nama_kabupaten" placeholder="Nama Kategori">
                                             </div>
                                         </div>
                                         <div class="col-12 d-flex justify-content-center">
@@ -58,7 +50,7 @@
                                 </div>
                             </form>
                             <div class="row">
-                                <a href="{{ route('objekwisata.index') }}" class="d-flex justify-content-center w-full">
+                                <a href="{{ route('kabupaten.index') }}" class="d-flex justify-content-center w-full">
                                     <button class="btn btn-secondary w-100 my-1">Kembali</button>
                                 </a>
                             </div>

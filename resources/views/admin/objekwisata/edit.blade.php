@@ -3,8 +3,8 @@
 @section('content')
 
 @php
-    $page = 'objekwisata';
-    $title = 'Objek Wisata';
+    $page = 'desawisata';
+    $title = 'Desa Wisata';
 @endphp
 
 <div class="page-heading">
@@ -16,7 +16,7 @@
                             {{$error}}
                         </div>
                         @endforeach
-                <h3>Edit Objek Wisata</h3>
+                <h3>Edit Desa Wisata</h3>
             </div>
         </div>
     </div>
@@ -28,7 +28,7 @@
             <div class="col-md-12 col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Form Edit Objek Wisata</h4>
+                        <h4 class="card-title">Form Edit Desa Wisata</h4>
                     </div>
                     <div class="card-content">
                         <div class="card-body">
@@ -37,7 +37,18 @@
                                 @method('PUT')
                                 <div class="form-body">
                                     <div class="row">
-                                        <div class="col-12">
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="email-id-vertical">Pilih Kabupaten</label>
+                                                <select name="kabupaten_id" id="" class="form-control">
+                                                    <option value="">Pilih Kabupaten</option>
+                                                    @foreach ($kabupatens as $items)
+                                                        <option value="{{ $items->id }}" {{ ( $items->id == $data->kabupaten_id) ? 'selected' : '' }}>{{ $items->nama_kabupaten }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
                                             <div class="form-group">
                                                 <label for="email-id-vertical">Pilih Kategori</label>
                                                 <select name="kategori_id" id="" class="form-control">
@@ -50,9 +61,9 @@
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <label for="email-id-vertical">Nama Objek Wisata</label>
+                                                <label for="email-id-vertical">Nama Desa Wisata</label>
                                                 <input type="text" id="email-id-vertical" class="form-control"
-                                                    name="nama" placeholder="Nama Objek Wisata" value="{{ $data->nama }}" required>
+                                                    name="nama" placeholder="Nama Desa Wisata" value="{{ $data->nama }}" required>
                                             </div>
                                         </div>
                                         <div class="col-12">
@@ -86,8 +97,8 @@
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <label for="fasilitas" class="form-label">Fasilitas</label>
-                                                <textarea class="form-control" id="fasilitas" rows="3" name="fasilitas" required>{{ $data->fasilitas }}</textarea>
+                                                <label for="potensi_wisata" class="form-label">Potensi Wisata</label>
+                                                <textarea class="form-control" id="potensi_wisata" rows="3" name="potensi_wisata" required>{{ $data->potensi_wisata }}</textarea>
                                             </div>
                                         </div>
                                         <div class="col-12 d-flex justify-content-center">

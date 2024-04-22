@@ -3,8 +3,8 @@
 @section('content')
 
 @php
-    $page = 'kategori';
-    $title = 'Kategori';
+    $page = 'kabupaten';
+    $title = 'Kabupaten';
 @endphp
 
 <div class="page-heading">
@@ -23,10 +23,10 @@
                   </div>
                 @endif
 
-                <h3>Kategori</h3>
+                <h3>Kabupaten</h3>
                 <div class="my-3">
-                    <a href="{{ route('kategori.create') }}">
-                        <button class="btn btn-primary my-2">Tambah Kategori</button>
+                    <a href="{{ route('kabupaten.create') }}">
+                        <button class="btn btn-primary my-2">Tambah Kabupaten</button>
                     </a>
                 </div>
             </div>
@@ -45,7 +45,7 @@
     <section class="section">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Daftar Kategori</h4>
+                        <h4 class="card-title">Daftar Kabupaten</h4>
                     </div>
                     <div class="card-body">
                         <!-- table bordered -->
@@ -53,7 +53,7 @@
                                 <thead>
                                     <tr>
                                         <th>NO</th>
-                                        <th>Nama Kategori</th>
+                                        <th>Nama Kabupaten</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -64,18 +64,18 @@
                                         @foreach ($datas as $item)
                                             <tr>
                                                 <td>{{ $no++ }}</td>
-                                                <td>{{ $item->nama_kategori }}</td>
+                                                <td>{{ ucwords($item->nama_kabupaten) }}</td>
                                                 <td>
                                                     <div class="dropdown">
                                                         <button id="toa" class="btn btn-primary" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                                             <span class="bi bi-three-dots-vertical"></span>
                                                         </button>
                                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                            <a href="{{ route('kategori.edit',$item->id) }}" class="dropdown-item"><i class="bi bi-pencil-square"></i> Edit</a>
-                                                            <form action="{{route('kategori.destroy',$item->id)}}" method="post">
+                                                            <a href="{{ route('kabupaten.edit',$item->id) }}" class="dropdown-item"><i class="bi bi-pencil-square"></i> Edit</a>
+                                                            <form action="{{route('kabupaten.destroy',$item->id)}}" method="post">
                                                                 @csrf
                                                                 @method('delete')
-                                                                <button class="dropdown-item" onclick="return confirm('Yakin hapus kategori?')"><i class="bi bi-trash"></i> Hapus</button>
+                                                                <button class="dropdown-item" onclick="return confirm('Yakin hapus kabupaten?')"><i class="bi bi-trash"></i> Hapus</button>
                                                               </form>
                                                         </div>
                                                     </div>

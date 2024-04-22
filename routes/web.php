@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DeleteTemporaryImageController;
+use App\Http\Controllers\KabupatenController;
 use App\Http\Controllers\KategoriController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -50,6 +51,8 @@ Route::group(['middleware' => ['role:Admin','auth']],function(){
 
     Route::get('/editfoto/{id}', [ObjekWisataController::class, 'editfoto'])->name('editfoto');
     Route::put('/editfotoproses/{id}', [ObjekWisataController::class, 'editfotoproses'])->name('editfotoproses');
+
+    Route::resource('kabupaten', KabupatenController::class);
 
     Route::resource('kategori',KategoriController::class);
 

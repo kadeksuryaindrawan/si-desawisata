@@ -3,8 +3,8 @@
 @section('content')
 
 @php
-    $page = 'objekwisata';
-    $title = 'Objek Wisata';
+    $page = 'desawisata';
+    $title = 'Desa Wisata';
 @endphp
 
 <div class="page-heading">
@@ -16,7 +16,7 @@
                             {{$error}}
                         </div>
                         @endforeach
-                <h3>Edit Foto Objek Wisata</h3>
+                <h3>Edit Foto Desa Wisata</h3>
             </div>
         </div>
     </div>
@@ -28,7 +28,7 @@
             <div class="col-md-12 col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Form Edit Foto Objek Wisata</h4>
+                        <h4 class="card-title">Form Edit Foto Desa Wisata</h4>
                     </div>
                     <div class="card-content">
                         <div class="card-body">

@@ -16,13 +16,14 @@ class CreateObjekWisatasTable extends Migration
         Schema::create('objek_wisatas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('pengelola_id')->nullable();
+            $table->foreignId('kabupaten_id');
             $table->foreignId('kategori_id');
             $table->string('nama');
             $table->text('alamat');
             $table->text('longitude');
             $table->text('latitude');
             $table->text('deskripsi');
-            $table->text('fasilitas');
+            $table->text('potensi_wisata');
             $table->timestamps();
         });
     }

@@ -3,8 +3,8 @@
 @section('content')
 
 @php
-    $page = 'objekwisata';
-    $title = 'Objek Wisata';
+    $page = 'desawisata';
+    $title = 'Desa Wisata';
 @endphp
 
 <div class="page-heading">
@@ -23,11 +23,11 @@
                   </div>
                 @endif
 
-                <h3>Objek Wisata</h3>
+                <h3>Desa Wisata</h3>
                 <div class="my-3">
                     @if (Auth::user()->hasRole('Admin'))
                         <a href="{{ route('objekwisata.create') }}">
-                            <button class="btn btn-primary my-2">Tambah Objek Wisata</button>
+                            <button class="btn btn-primary my-2">Tambah Desa Wisata</button>
                         </a>
                     @endif
 
@@ -48,7 +48,7 @@
     <section class="section">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Daftar Objek Wisata</h4>
+                        <h4 class="card-title">Daftar Desa Wisata</h4>
                     </div>
                     <div class="card-body">
                         <!-- table bordered -->
@@ -57,8 +57,9 @@
                                     <tr>
                                         <th>NO</th>
                                         <th>Pengelola</th>
+                                        <th>Kabupaten</th>
                                         <th>Kategori</th>
-                                        <th>Nama Objek Wisata</th>
+                                        <th>Nama Desa Wisata</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -74,10 +75,11 @@
                                                     <td class="text-danger">Pengelola Belum Ada</td>
                                                 @endif
                                                 @if ($item->pengelola_id != NULL)
-                                                    <td>{{ $item->pengelola->name }}</td>
+                                                    <td>{{ ucwords($item->pengelola->name) }}</td>
                                                 @endif
-                                                <td>{{ $item->kategori->nama_kategori }}</td>
-                                                <td>{{ $item->nama }}</td>
+                                                <td>{{ ucwords($item->kabupaten->nama_kabupaten) }}</td>
+                                                <td>{{ ucwords($item->kategori->nama_kategori) }}</td>
+                                                <td>{{ ucwords($item->nama) }}</td>
 
                                                 <td>
                                                     <div class="dropdown">
@@ -97,7 +99,7 @@
                                                             <form action="{{route('objekwisata.destroy',$item->id)}}" method="post">
                                                                 @csrf
                                                                 @method('delete')
-                                                                <button class="dropdown-item" onclick="return confirm('Yakin hapus objek wisata?')"><i class="bi bi-trash"></i> Hapus</button>
+                                                                <button class="dropdown-item" onclick="return confirm('Yakin hapus desa wisata?')"><i class="bi bi-trash"></i> Hapus</button>
                                                               </form>
                                                             @endif
 

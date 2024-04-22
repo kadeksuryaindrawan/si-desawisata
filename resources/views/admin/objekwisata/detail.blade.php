@@ -3,8 +3,8 @@
 @section('content')
 
 @php
-    $page = 'objekwisata';
-    $title = 'Objek Wisata';
+    $page = 'desawisata';
+    $title = 'Desa Wisata';
 @endphp
 
 <div class="page-heading">
@@ -16,7 +16,7 @@
                             {{$error}}
                         </div>
                         @endforeach
-                <h3>Detail Objek Wisata</h3>
+                <h3>Detail Desa Wisata</h3>
             </div>
         </div>
     </div>
@@ -28,7 +28,7 @@
             <div class="col-md-12 col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Detail Objek Wisata {{ $data->nama }}</h4>
+                        <h4 class="card-title">Detail {{ $data->nama }}</h4>
                     </div>
                     <div class="card-content">
                         <div class="card-body">
@@ -42,8 +42,9 @@
                                     @endforeach
                                 </div>
                                 <div class="col-12">
-                                    <p>Nama Objek Wisata : <strong>{{ $data->nama }}</strong></p>
-                                    <p>Kategori : <strong>{{ $data->kategori->nama_kategori }}</strong></p>
+                                    <p>Nama Desa Wisata : <strong>{{ ucwords($data->nama) }}</strong></p>
+                                    <p>Kabupaten : <strong>{{ ucwords($data->kabupaten->nama_kabupaten) }}</strong></p>
+                                    <p>Kategori : <strong>{{ ucwords($data->kategori->nama_kategori) }}</strong></p>
                                     @if ($data->pengelola_id == NULL)
                                         <p>Pengelola : <span class="text-danger">Belum Ada</span></p>
                                     @endif
@@ -56,7 +57,7 @@
                                         <div id="map" style="width: 100%;height: 200px;border-radius: 10px;"></div>
                                     </div>
                                     <p>Deskripsi : <strong>{{ $data->deskripsi }}</strong></p>
-                                    <p>Fasilitas : <strong>{{ $data->fasilitas }}</strong></p>
+                                    <p>Potensi Wisata : <strong>{{ $data->potensi_wisata }}</strong></p>
 
                                 </div>
 
