@@ -20,14 +20,16 @@ class UploadTemporaryImageController extends Controller
                 $image = $request->file('image');
                 $filename = md5(time()) . "-" . "objek-wisata." . $image->getClientOriginalExtension();
                 $folder = uniqid('image-', true);
+                $destinationDirectory = public_path('images/objekwisata/' . $folder);
+                if (!File::exists($destinationDirectory)) {
+                    File::makeDirectory($destinationDirectory, 0755, true);
+                }
                 $image->move('images/tmp/' . $folder, $filename);
 
                 $temporary = TemporaryImage::create([
                     'folder' => $folder,
                     'file' => $filename
                 ]);
-
-                File::makeDirectory(public_path('images/objekwisata/' . $temporary->folder));
 
                 return $folder;
             }
