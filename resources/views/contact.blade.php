@@ -2,63 +2,78 @@
 
 @section('content')
 
-@php
-    $page = 'contact';
-@endphp
+    <!-- BreadCrumb Starts -->
+    <section class="breadcrumb-main pb-20 pt-14" style="background-image: url({{ asset('landing') }}/images/bg/bg1.jpg);">
+        <div class="section-shape section-shape1 top-inherit bottom-0" style="background-image: url({{ asset('landing') }}/images/shape8.png);"></div>
+        <div class="breadcrumb-outer">
+            <div class="container">
+                <div class="breadcrumb-content text-center">
+                    <h1 class="mb-3">Contact Us</h1>
+                    <nav aria-label="breadcrumb" class="d-block">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Contact Us</li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="dot-overlay"></div>
+    </section>
+    <!-- BreadCrumb Ends -->
 
-<section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('images/bg_1.jpg');">
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
-        <div class="col-md-9 ftco-animate pb-5 text-center">
-         <p class="breadcrumbs"><span class="mr-2"><a href="{{ url('/') }}">Home <i class="fa fa-chevron-right"></i></a></span> <span>Contact us <i class="fa fa-chevron-right"></i></span></p>
-         <h1 class="mb-0 bread">Contact us</h1>
-       </div>
-     </div>
-   </div>
-  </section>
-
-  <section class="ftco-section ftco-no-pb contact-section mb-4">
-    <div class="container">
-      <div class="row d-flex contact-info">
-        <div class="col-md-3 d-flex">
-         <div class="align-self-stretch box p-4 text-center">
-          <div class="icon d-flex align-items-center justify-content-center">
-           <span class="fa fa-map-marker"></span>
-         </div>
-         <h3 class="mb-2">Address</h3>
-         <p>198 West 21th Street, Suite 721 New York NY 10016</p>
-       </div>
-     </div>
-     <div class="col-md-3 d-flex">
-       <div class="align-self-stretch box p-4 text-center">
-        <div class="icon d-flex align-items-center justify-content-center">
-         <span class="fa fa-phone"></span>
-       </div>
-       <h3 class="mb-2">Contact Number</h3>
-       <p><a href="tel://1234567920">+ 1235 2355 98</a></p>
-     </div>
-   </div>
-   <div class="col-md-3 d-flex">
-     <div class="align-self-stretch box p-4 text-center">
-      <div class="icon d-flex align-items-center justify-content-center">
-       <span class="fa fa-paper-plane"></span>
-     </div>
-     <h3 class="mb-2">Email Address</h3>
-     <p><a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
-   </div>
-  </div>
-  <div class="col-md-3 d-flex">
-   <div class="align-self-stretch box p-4 text-center">
-    <div class="icon d-flex align-items-center justify-content-center">
-     <span class="fa fa-globe"></span>
-   </div>
-   <h3 class="mb-2">Website</h3>
-   <p><a href="#">yoursite.com</a></p>
-  </div>
-  </div>
-  </div>
-  </div>
-  </section>
+    <!-- contact starts -->
+    <section class="contact-main pt-6 pb-60">
+        <div class="container">
+            <div class="contact-info-main mt-0">
+                <div class="row">
+                    <div class="col-lg-10 col-offset-lg-1 mx-auto">
+                        <div class="contact-info bg-white">
+                            <div class="contact-info-title text-center mb-4 px-5">
+                                <h3 class="mb-1">INFORMASI TENTANG KAMI</h3>
+                                <p class="mb-0">Sagittis posuere id nam quis vestibulum vestibulum a facilisi at elit hendrerit scelerisque sodales nam dis orci.</p>
+                            </div>
+                            <div class="contact-info-content row mb-1">
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <div class="info-item bg-lgrey px-4 py-5 border-all text-center rounded">
+                                        <div class="info-icon mb-2">
+                                            <i class="fa fa-map-marker-alt theme"></i>
+                                        </div>
+                                        <div class="info-content">
+                                            <h3>Location</h3>
+                                            <p class="m-0">Bali, Indonesia</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <div class="info-item bg-lgrey px-4 py-5 border-all text-center rounded">
+                                        <div class="info-icon mb-2">
+                                            <i class="fa fa-phone theme"></i>
+                                        </div>
+                                        <div class="info-content">
+                                            <h3>Telp</h3>
+                                            <p class="m-0">977-444-666-888</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-12 mb-4">
+                                    <div class="info-item bg-lgrey px-4 py-5 border-all text-center rounded">
+                                        <div class="info-icon mb-2">
+                                            <i class="fa fa-envelope theme"></i>
+                                        </div>
+                                        <div class="info-content ps-4">
+                                            <h3>Email</h3>
+                                            <p class="m-0">desawisatabali@gmail.com</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- contact Ends -->
 
 @endsection

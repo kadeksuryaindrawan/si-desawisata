@@ -6,10 +6,8 @@ use App\Http\Controllers\KategoriController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\LandingController;
-use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\ObjekWisataController;
 use App\Http\Controllers\PengelolaController;
-use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UploadTemporaryImageController;
 
 /*
@@ -27,7 +25,11 @@ Route::get('/', [LandingController::class,'index']);
 
 Route::get('/about',[LandingController::class,'about']);
 
-Route::get('/destination', [LandingController::class,'destination']);
+Route::get('/desawisata', [LandingController::class,'desawisata']);
+
+Route::get('/desawisata/{id}', [LandingController::class, 'desawisatakabupaten'])->name('desawisatakabupaten');
+
+Route::post('/kategoridesawisata', [LandingController::class, 'kategorifilter'])->name('kategorifilter');
 
 Route::get('/detail/{id}', [LandingController::class,'detail'])->name('detail');
 

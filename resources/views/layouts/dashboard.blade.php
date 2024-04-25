@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hidems - {{ $title }}</title>
+    <title>DWB - {{ $title }}</title>
 
     <link rel="stylesheet" href="{{ asset('dashboard/css/main/app.css') }}">
-    <link rel="shortcut icon" href="{{ asset('images/icon.png') }}">
+    <link rel="shortcut icon" href="{{ asset('landing/images/favicon.png') }}">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
 <link rel="stylesheet" href="{{ asset('dashboard/css/shared/iconly.css') }}">
@@ -35,7 +35,7 @@
     <div class="sidebar-header position-relative">
         <div class="d-flex justify-content-between align-items-center">
             <div class="m-3">
-                <a href="{{ url('/') }}"> <h5 class="text-primary">Hidems</h5></a>
+                <a style="font-size:25px;" href="{{ url('/') }}"> DWB</a>
             </div>
             <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
 
@@ -117,7 +117,7 @@
                         <a class="float-end" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
-                            Logout
+                            <button class="btn btn-primary">Logout</button>
                         </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf

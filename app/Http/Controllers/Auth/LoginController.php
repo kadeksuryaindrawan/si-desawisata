@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Kabupaten;
+use App\Models\ObjekWisata;
 use App\Providers\RouteServiceProvider;
 use Symfony\Component\HttpFoundation\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -39,14 +41,21 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    public function showLoginForm()
+    {
+        $allDesaWisata = ObjekWisata::count();
+        $kabupatens = Kabupaten::orderBy('created_at', 'desc')->get();
+        return view('auth.login',compact('kabupatens','allDesaWisata'));
+    }
+
     public function logout(Request $request)
     {
         $this->guard()->logout();
- 
+
         $request->session()->flush();
- 
+
         $request->session()->regenerate();
- 
+
         return redirect('/login')
             ->withSuccess('Terimakasih, selamat datang kembali!');
     }
