@@ -104,4 +104,5 @@
     </section>
     <!-- Last Minute Deal Ends -->
 
+    <script src="{{ asset('landing') }}/js/plugin.js"></script>
 @endsection

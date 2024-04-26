@@ -48,15 +48,4 @@ class LoginController extends Controller
         return view('auth.login',compact('kabupatens','allDesaWisata'));
     }
 
-    public function logout(Request $request)
-    {
-        $this->guard()->logout();
-
-        $request->session()->flush();
-
-        $request->session()->regenerate();
-
-        return redirect('/login')
-            ->withSuccess('Terimakasih, selamat datang kembali!');
-    }
 }

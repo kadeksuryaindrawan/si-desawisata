@@ -72,11 +72,6 @@
                                     </div>
                                 </div>
                             </form>
-                            <div class="row">
-                                <a href="{{ route('pengelola.index') }}" class="d-flex justify-content-center w-full">
-                                    <button class="btn btn-secondary w-100 my-1">Kembali</button>
-                                </a>
-                            </div>
                         </div>
                     </div>
                 </div>

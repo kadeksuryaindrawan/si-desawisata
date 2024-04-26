@@ -76,4 +76,5 @@
     </section>
     <!-- contact Ends -->
 
+    <script src="{{ asset('landing') }}/js/plugin.js"></script>
 @endsection

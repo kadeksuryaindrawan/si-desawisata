@@ -50,4 +50,5 @@
     </section>
     <!-- about-us ends -->
 
+    <script src="{{ asset('landing') }}/js/plugin.js"></script>
 @endsection

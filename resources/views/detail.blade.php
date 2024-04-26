@@ -92,6 +92,8 @@
     </section>
     <!-- top Destination ends -->
 
+    <script src="{{ asset('landing') }}/js/plugin.js"></script>
+
     <script>
 
         let mapOptions = {
