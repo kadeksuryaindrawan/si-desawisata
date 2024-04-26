@@ -63,7 +63,7 @@
                                         </div>
                                         <div class="info-content ps-4">
                                             <h3>Email</h3>
-                                            <p class="m-0">desawisatabali@gmail.com</p>
+                                            <p class="m-0">sideta@gmail.com</p>
                                         </div>
                                     </div>
                                 </div>

@@ -19,7 +19,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body py-5">
-                    <h5>Selamat datang di dashboard HIDDEMS, <span class="text-success">{{ Auth::user()->name }}</span></h5>
+                    <h5>Selamat datang di dashboard SIDETA, <span class="text-success">{{ Auth::user()->name }}</span></h5>
                     <a href="{{ route('ubahpassword',Auth::user()->id) }}"><button class="btn btn-primary mt-2">Ubah Password</button></a>
                 </div>
             </div>

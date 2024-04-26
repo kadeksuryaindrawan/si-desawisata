@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>DWB -
+    <title>SIDETA -
         @if (request()->segment(1) == '')
         Desa Wisata Bali
         @else
@@ -65,7 +65,7 @@
                         <!-- Brand and toggle get grouped for better mobile display -->
                         <div class="navbar-header">
                             <a class="navbar-brand theme" style="font-weight: 800;" href="{{ url('/') }}">
-                                DWB
+                                SIDETA
                             </a>
                         </div>
                         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -133,15 +133,15 @@
                     <div class="col-lg-6 col-md-6 col-sm-12 mb-4 pe-4">
                         <div class="footer-about">
                             <a class="navbar-brand theme" style="font-weight: 800; font-size: 27px; letter-spacing: 2px;" href="{{ url('/') }}">
-                                DWB
+                                SIDETA
                             </a>
                             <p class="mt-3 mb-3 white">
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Odio suspendisse leo neque iaculis molestie sagittis maecenas aenean eget molestie sagittis.
                             </p>
                             <ul>
                                 <li class="white"><strong>Location:</strong> Bali, Indonesia</li><br>
-                                <li class="white"><strong>Email:</strong> desawisatabali@gmail.com</li><br>
-                                <li class="white"><strong>Website:</strong> www.desawisatabali.com</li>
+                                <li class="white"><strong>Email:</strong> sideta@gmail.com</li><br>
+                                <li class="white"><strong>Website:</strong> www.sideta.com</li>
                             </ul>
                         </div>
                     </div>
@@ -176,7 +176,7 @@
             <div class="container">
                 <div class="copyright-inner rounded p-3 d-md-flex align-items-center justify-content-between">
                     <div class="copyright-text">
-                        <p class="m-0 white">2024 DWB. All rights reserved.</p>
+                        <p class="m-0 white">2024 SIDETA. All rights reserved.</p>
                     </div>
                     <div class="social-links">
                         <ul>

@@ -35,7 +35,7 @@
     <div class="sidebar-header position-relative">
         <div class="d-flex justify-content-between align-items-center">
             <div class="m-3">
-                <a style="font-size:25px;" href="{{ url('/') }}"> DWB</a>
+                <a style="font-size:25px;" href="{{ url('/') }}"> SIDETA</a>
             </div>
             <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
 
