@@ -12,9 +12,9 @@
                             <div class="slide-image" style="background-image:url({{ asset('landing') }}/images/slider/1.jpg)"></div>
                             <div class="swiper-content">
                                 <div class="entry-meta mb-2">
-                                    <h5 class="entry-category mb-0 white">Amazing Places</h5>
+                                    <h5 class="entry-category mb-0 white">Desa Yang Indah</h5>
                                 </div>
-                                <h1 class="mb-2 white">Make Your Trip Fun & Noted</h1>
+                                <h1 class="mb-2 white">Desa Wisata Di Bali Yang Sangat Indah</h1>
                                 <p class="white mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
                                 <a href="{{ url('/contact') }}" class="nir-btn">Contact Us</a>
                             </div>
@@ -26,9 +26,9 @@
                             <div class="slide-image" style="background-image:url({{ asset('landing') }}/images/slider/2.jpg)"></div>
                             <div class="swiper-content">
                                 <div class="entry-meta mb-2">
-                                    <h5 class="entry-category mb-0 white">Explore Travel</h5>
+                                    <h5 class="entry-category mb-0 white">Jelajahi Bali</h5>
                                 </div>
-                                <h1 class="mb-2 white">Start Planning Your Dream Trip</h1>
+                                <h1 class="mb-2 white">Jelajahi Bali Dengan Berbagai Desa Wisatanya</h1>
                                 <p class="white mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
                                 <div class="slider-button d-flex justify-content-center">
                                      <a href="{{ url('/desawisata') }}" class="nir-btn me-4">Desa Wisata</a>
@@ -67,7 +67,7 @@
                                     <div class="why-us-icon mb-1">
                                         <i class="icon-flag theme"></i>
                                     </div>
-                                    <h4><a href="about.html">Tell Us What You want To Do</a></h4>
+                                    <h4>Pilihan Tepat</h4>
                                     <p class="mb-2">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.</p>
                                 </div>
                             </div>
@@ -78,7 +78,7 @@
                                     <div class="why-us-icon mb-1">
                                         <i class="icon-location-pin theme"></i>
                                     </div>
-                                    <h4><a href="about.html">Share Your Travel Locations</a></h4>
+                                    <h4>Lokasi Jelas</h4>
                                     <p class="mb-2">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.</p>
                                 </div>
                             </div>
@@ -89,7 +89,7 @@
                                     <div class="why-us-icon mb-1">
                                         <i class="icon-directions theme"></i>
                                     </div>
-                                    <h4><a href="about.html">Share Your Travel Preference</a></h4>
+                                    <h4>Wisata Indah</h4>
                                     <p class="mb-2">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.</p>
                                 </div>
                             </div>
@@ -100,7 +100,7 @@
                                     <div class="why-us-icon mb-1">
                                         <i class="icon-compass theme"></i>
                                     </div>
-                                    <h4><a href="about.html">Here 100% Trusted Tour Agency</a></h4>
+                                    <h4>Peta Lokasi</h4>
                                     <p class="mb-2">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.</p>
                                 </div>
                             </div>
@@ -145,13 +145,11 @@
 
                             @foreach ($kategoris as $kategori)
                                 <div class="col-lg-3 col-md-6 my-4">
-                                    <a href="#">
                                         <div style="width: 100%;" class="category-item box-shadow text-center py-5 px-0 bg-white rounded overflow-hidden">
                                             <div class="trending-topic-content">
                                                 <h5 class="mb-0">{{ ucwords($kategori->nama_kategori) }}</h5>
                                             </div>
                                         </div>
-                                    </a>
                                 </div>
                             @endforeach
 
@@ -177,7 +175,7 @@
 
                     @foreach ($datas3 as $item)
                         <div class="col-lg-4 mb-4">
-                            <a href="#">
+                            <a href="{{ route('detail',$item->id) }}">
                                 <div class="trend-item1 rounded box-shadow bg-white">
                                     <div class="trend-image position-relative">
                                         @foreach ($item->images as $image)

@@ -28,6 +28,20 @@
             <div class="section-title mb-6 w-75 mx-auto text-center">
                 <h4 class="mb-1 theme1">Desa Wisata</h4>
                 <h2 class="mb-1">Daftar Desa Wisata <span class="theme">Bali</span></h2>
+
+                @if ($kategori_id == 'all' || $kategori_id == null)
+                    <p>Jumlah Desa Wisata Di Bali : {{ $allDesaWisata }}</p>
+                @else
+                @php
+                    $kategori = $allDesaKategori->where('kategori_id', $kategori_id)->first();
+                @endphp
+                    @if ($kategori)
+                        <p>Jumlah Desa Wisata Di Bali dengan kategori {{ ucwords($kategori->kategori->nama_kategori) }} : {{ $allDesaKategori->where('kategori_id', $kategori_id)->count() }}</p>
+                    @else
+                        <p>Belum ada data!</p>
+                    @endif
+
+                @endif
             </div>
                 <form class="mb-5" action="{{ route('kategorifilter') }}" method="POST">
                     @csrf
@@ -36,9 +50,9 @@
                         <div class="col-lg-3">
                             <label for="kategori">Pilih Kategori :</label>
                             <select name="kategori_id" class="form-control" id="">
-                                <option value="all">All</option>
+                                <option value="all">All ({{ $allDesaKategori->count() }})</option>
                                 @foreach ($kategoris as $kategori)
-                                    <option value="{{ $kategori->id }}" {{ ( $kategori->id == $kategori_id) ? 'selected' : '' }}>{{ ucwords($kategori->nama_kategori) }}</option>
+                                    <option value="{{ $kategori->id }}" {{ ( $kategori->id == $kategori_id) ? 'selected' : '' }}>{{ ucwords($kategori->nama_kategori) }} ({{ $kategori->objekWisata()->count() }})</option>
                                 @endforeach
                             </select>
                         </div>
@@ -54,7 +68,7 @@
                     @if ($datas->count()>0)
                         @foreach ($datas as $item)
                             <div class="col-lg-4 mb-4">
-                                <a href="#">
+                                <a href="{{ route('detail',$item->id) }}">
                                     <div class="trend-item1 rounded box-shadow bg-white">
                                         <div class="trend-image position-relative">
                                             @foreach ($item->images as $image)

@@ -27,22 +27,24 @@ class LandingController extends Controller
 
     public function desawisata(){
         $allDesaWisata = ObjekWisata::count();
+        $allDesaKategori = ObjekWisata::orderBy('created_at', 'DESC')->get();
         $datas = ObjekWisata::orderBy('created_at','DESC')->get();
         $kabupatens = Kabupaten::orderBy('created_at', 'desc')->get();
         $kategoris = Kategori::orderBy('created_at', 'desc')->get();
         $kategori_id = NULL;
-        return view('desawisata',compact('datas','kabupatens','kategori_id', 'allDesaWisata','kategoris'));
+        return view('desawisata',compact('datas', 'allDesaKategori','kabupatens','kategori_id', 'allDesaWisata','kategoris'));
     }
 
     public function desawisatakabupaten($id)
     {
         $allDesaWisata = ObjekWisata::count();
+        $allDesaKabupaten = ObjekWisata::where('kabupaten_id',$id)->orderBy('created_at', 'DESC')->get();
         $datas = ObjekWisata::where('kabupaten_id',$id)->orderBy('created_at', 'DESC')->get();
         $data = Kabupaten::find($id);
         $kabupatens = Kabupaten::orderBy('created_at', 'desc')->get();
         $kategoris = Kategori::orderBy('created_at', 'desc')->get();
         $kategori_id = NULL;
-        return view('desawisatakabupaten', compact('data','datas','kabupatens','kategori_id', 'allDesaWisata','kategoris'));
+        return view('desawisatakabupaten', compact('data', 'allDesaKabupaten','datas','kabupatens','kategori_id', 'allDesaWisata','kategoris'));
     }
 
     public function kategorifilter(Request $request){
@@ -52,32 +54,36 @@ class LandingController extends Controller
         if($kabupaten_id == NULL){
             if($kategori_id == 'all'){
                 $allDesaWisata = ObjekWisata::count();
+                $allDesaKategori = ObjekWisata::orderBy('created_at', 'DESC')->get();
                 $datas = ObjekWisata::orderBy('created_at', 'DESC')->get();
                 $kabupatens = Kabupaten::orderBy('created_at', 'desc')->get();
                 $kategoris = Kategori::orderBy('created_at', 'desc')->get();
-                return view('desawisata', compact('datas','kategori_id', 'kabupatens', 'allDesaWisata', 'kategoris'));
+                return view('desawisata', compact('datas','allDesaKategori','kategori_id', 'kabupatens', 'allDesaWisata', 'kategoris'));
             }else{
                 $allDesaWisata = ObjekWisata::count();
+                $allDesaKategori = ObjekWisata::orderBy('created_at', 'DESC')->get();
                 $datas = ObjekWisata::where('kategori_id', $kategori_id)->orderBy('created_at', 'DESC')->get();
                 $kabupatens = Kabupaten::orderBy('created_at', 'desc')->get();
                 $kategoris = Kategori::orderBy('created_at', 'desc')->get();
-                return view('desawisata', compact('datas', 'kategori_id', 'kabupatens', 'allDesaWisata', 'kategoris'));
+                return view('desawisata', compact('datas','allDesaKategori', 'kategori_id', 'kabupatens', 'allDesaWisata', 'kategoris'));
             }
         }else{
             if ($kategori_id == 'all') {
                 $allDesaWisata = ObjekWisata::count();
+                $allDesaKabupaten = ObjekWisata::where('kabupaten_id', $kabupaten_id)->orderBy('created_at', 'DESC')->get();
                 $datas = ObjekWisata::where('kabupaten_id', $kabupaten_id)->orderBy('created_at', 'DESC')->get();
                 $data = Kabupaten::find($kabupaten_id);
                 $kabupatens = Kabupaten::orderBy('created_at', 'desc')->get();
                 $kategoris = Kategori::orderBy('created_at', 'desc')->get();
-                return view('desawisatakabupaten', compact('data', 'kategori_id', 'datas', 'kabupatens', 'allDesaWisata', 'kategoris'));
+                return view('desawisatakabupaten', compact('data', 'allDesaKabupaten', 'kategori_id', 'datas', 'kabupatens', 'allDesaWisata', 'kategoris'));
             }else{
                 $allDesaWisata = ObjekWisata::count();
+                $allDesaKabupaten = ObjekWisata::where('kabupaten_id', $kabupaten_id)->orderBy('created_at', 'DESC')->get();
                 $datas = ObjekWisata::where('kabupaten_id', $kabupaten_id)->where('kategori_id', $kategori_id)->orderBy('created_at', 'DESC')->get();
                 $data = Kabupaten::find($kabupaten_id);
                 $kabupatens = Kabupaten::orderBy('created_at', 'desc')->get();
                 $kategoris = Kategori::orderBy('created_at', 'desc')->get();
-                return view('desawisatakabupaten', compact('data', 'kategori_id', 'datas', 'kabupatens', 'allDesaWisata', 'kategoris'));
+                return view('desawisatakabupaten', compact('data', 'allDesaKabupaten', 'kategori_id', 'datas', 'kabupatens', 'allDesaWisata', 'kategoris'));
             }
         }
     }

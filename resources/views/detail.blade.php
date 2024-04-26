@@ -1,62 +1,96 @@
 @extends('layouts.home')
 
 @section('content')
-    @php
-        $page = 'destination';
-    @endphp
 
-    <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('{{ asset('images/bg_1.jpg') }}');">
-        <div class="overlay"></div>
-        <div class="container">
-            <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
-                <div class="col-md-9 ftco-animate pb-5 text-center">
-                    <p class="breadcrumbs"><span class="mr-2"><a href="{{ url('/') }}">Home <i
-                                    class="fa fa-chevron-right"></i></a></span> <span>Destination Detail <i
-                                class="fa fa-chevron-right"></i></span></p>
-
-                    <h1 class="mb-0 bread">Destination Detail</h1>
+    <!-- BreadCrumb Starts -->
+    <section class="breadcrumb-main pb-20 pt-14" style="background-image: url({{ asset('landing') }}/images/bg/bg1.jpg);">
+        <div class="section-shape section-shape1 top-inherit bottom-0" style="background-image: url({{ asset('landing') }}/images/shape8.png);"></div>
+        <div class="breadcrumb-outer">
+            <div class="container">
+                <div class="breadcrumb-content text-center">
+                    <h1 class="mb-3">{{ ucwords($data->nama) }}</h1>
+                    <nav aria-label="breadcrumb" class="d-block">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Detail Desa Wisata</li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>
+        <div class="dot-overlay"></div>
     </section>
+    <!-- BreadCrumb Ends -->
 
-    <section class="ftco-section">
+    <!-- top Destination starts -->
+    <section class="trending pt-6 pb-0 bg-lgrey">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 mt-5">
-                    <div class="owl-slider owl-carousel owl-theme owl-btn-center-lr dots-none">
-                        @foreach ($images as $image)
-                        <div class="item slide-item">
-                            <div class="slide-item-img">
+                <div class="col-lg-12">
+                    <div class="single-content">
+                        <div id="highlight" class="mb-4">
+                            <div class="single-full-title border-b mb-2 pb-2">
+                                <div class="single-title">
+                                    <h2 class="mb-1">{{ ucwords($data->nama) }}</h2>
+                                    <div class="rating-main d-flex align-items-center">
+                                        <p class="mb-0 me-2"><i class="icon-location-pin"></i> {{ ucwords($data->kabupaten->nama_kabupaten) }} |  Kategori : <span class="mb-0 me-2 theme">{{ ucwords($data->kategori->nama_kategori) }}</span></p>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="description-images mb-4">
+                                @foreach ($data->images as $image)
+                                @endforeach
                                 <a class="example-image-link"href="{{ asset('images/objekwisata/'.$image->folder.'/'.$image->name) }}" data-lightbox="example-1">
-                                    <img style="width: 100%; height:500px; object-fit:cover;" src="{{ asset('images/objekwisata/'.$image->folder.'/'.$image->name) }}" alt="">
+                                    <img src="{{ asset('images/objekwisata/'.$image->folder.'/'.$image->name) }}" style="width: 100%;height:500px;object-fit:cover;" alt="image" class="rounded">
                                 </a>
+
+                            </div>
+
+                            <div class="description mb-2">
+                                <h4>Deskripsi</h4>
+                                <p>{{ ucfirst($data->deskripsi) }}</p>
+                            </div>
+
+                            <div class="description">
+                                <div class="bg-grey p-4 rounded mb-2">
+                                    <h5 class="mb-2">Alamat</h5>
+                                    <p>{{ ucfirst($data->alamat) }}</p>
+                                </div>
+                                <div class="bg-grey p-4 rounded mb-2">
+                                    <h4 class="mb-2">Potensi Wisata</h4>
+                                    <p>{{ ucfirst($data->potensi_wisata) }}</p>
+                                </div>
                             </div>
                         </div>
-                        @endforeach
 
-		            </div>
-                </div>
-                <!-- col end -->
-                <div class="col-lg-6 mt-5">
-                    <h2 class="h2">{{ ucwords($data->nama) }}</h2>
-                    <p>Kabupaten : <span class="text-primary">{{ ucwords($data->kabupaten->nama_kabupaten) }}</span></p>
-                    <p>Kategori : <span class="text-primary">{{ ucwords($data->kategori->nama_kategori) }}</span></p>
-                    <p>Alamat : <span>{{ ucfirst($data->alamat) }}</span></p>
-                    <p>Potensi Wisata : <span>{{ ucfirst($data->potensi_wisata) }}</span></p>
-                </div>
+                        <div class="description mb-2">
+                            <h4 class="mb-2">Foto Lainnya</h4>
+                            <div class="services-image d-md-flex">
+                                @foreach ($images as $image)
+                                    <div class="me-md-2 rounded overflow-hidden mb-2">
+                                        <a class="example-image-link"href="{{ asset('images/objekwisata/'.$image->folder.'/'.$image->name) }}" data-lightbox="example-1">
+                                            <img style="width: 100%; height:200px; object-fit:cover;" src="{{ asset('images/objekwisata/'.$image->folder.'/'.$image->name) }}" alt="">
+                                        </a>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
 
-                <div class="col-lg-12"  style="margin-top: 50px;">
-                    <h5 class="h5">Deskripsi</h5>
-                    <p>{{ ucfirst($data->deskripsi) }}</p>
-                </div>
-
-                <div class="col-lg-12" style="margin-top: 70px;">
-                    <div id="map" style="width: 100%;height: 500px;border-radius: 10px;z-index:1;"></div>
+                        <div  id="single-map" class="single-map mb-4">
+                            <h4>Map</h4>
+                            <div class="map rounded overflow-hidden">
+                                <div id="map" style="width: 100%;height: 500px;border-radius: 10px;z-index:1;"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+    <!-- top Destination ends -->
 
     <script>
 
@@ -75,18 +109,5 @@
         latlong.addTo(map).bindPopup("<b>{{ ucwords($data->nama) }}</b><br><p>{{ ucfirst($data->deskripsi) }}</p><a target='_BLANK' href='https://www.google.com/maps?q={{ $data->latitude }}, {{ $data->longitude }}'><button class='btn btn-primary btn-sm'>Lihat Pada Maps</button></a>");
 
 
-    </script>
-
-    <script>
-    $(document).ready(function(){
-        var owl = $(".owl-carousel");
-        owl.owlCarousel({
-            items: 1,
-            autoplay: true,
-            autoPlaySpeed: 5000,
-            autoPlayTimeout: 5000,
-            autoplayHoverPause: true
-        });
-    });
     </script>
 @endsection

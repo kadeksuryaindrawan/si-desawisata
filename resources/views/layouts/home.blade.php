@@ -77,7 +77,7 @@
                                 <li class="{{ (request()->segment(1) == 'about') ? 'active' : '' }}">
                                     <a href="{{ url('/about') }}">About Us</a>
                                 </li>
-                                <li class="submenu dropdown {{ (request()->segment(1) == 'desawisata' || request()->segment(1) == 'kategoridesawisata') ? 'active' : '' }}">
+                                <li class="submenu dropdown {{ (request()->segment(1) == 'desawisata' || request()->segment(1) == 'kategoridesawisata' || request()->segment(1) == 'detail') ? 'active' : '' }}">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Desa Wisata <i class="icon-arrow-down" aria-hidden="true"></i></a>
                                     <ul class="dropdown-menu">
                                         <li class="submenu dropdown">
