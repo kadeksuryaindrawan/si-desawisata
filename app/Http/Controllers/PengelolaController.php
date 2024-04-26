@@ -63,7 +63,7 @@ class PengelolaController extends Controller
      */
     public function show($id)
     {
-        
+
     }
 
     /**
@@ -129,8 +129,8 @@ class PengelolaController extends Controller
             User::where('id',$id)->update([
                 'password' => Hash::make($request->password)
             ]);
-            return redirect()->route('pengelola.index')->with('success', 'Berhasil ubah password pengelola!');
-            
+            return redirect()->back()->with('success', 'Berhasil ubah password!');
+
         }catch(\Throwable $th){
             throw $th;
         }

@@ -91,10 +91,10 @@
             @endif
 
             @if (Auth::user()->hasRole('Pengelola'))
-            <li <?php if($page == "objekwisata") echo "class='sidebar-item active'";?>>
+            <li <?php if($page == "desawisata") echo "class='sidebar-item active'";?>>
                 <a href="{{ route('objekwisata.index') }}" class='sidebar-link'>
                     <i class="bi bi-flower1"></i>
-                    <span>Objek Wisata</span>
+                    <span>Desa Wisata</span>
                 </a>
             </li>
             @endif

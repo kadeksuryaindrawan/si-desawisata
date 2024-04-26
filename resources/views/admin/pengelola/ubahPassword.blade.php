@@ -12,10 +12,22 @@
         <div class="row">
             <div class="col-12 col-md-12 order-md-1 order-last mb-3">
                 @foreach($errors->all() as $error)
-                        <div class="alert alert-danger" role="alert">
-                            {{$error}}
-                        </div>
-                        @endforeach
+                    <div class="alert alert-danger" role="alert">
+                        {{$error}}
+                    </div>
+                @endforeach
+
+                @if(session('success'))
+                <div class="alert alert-success" role="alert">
+                    {{session('success')}}
+                </div>
+                @endif
+
+                @if(session('error'))
+                <div class="alert alert-danger" role="alert">
+                    {{session('error')}}
+                </div>
+                @endif
                 <h3>Ubah Password</h3>
             </div>
         </div>
@@ -29,9 +41,9 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Form Ubah Password</h4>
-                        
+
                     </div>
-                    
+
                     <div class="card-content">
                         <div class="card-body">
                             <form action="{{route('updatepassword',$data->id)}}" method="POST" class="form form-vertical">

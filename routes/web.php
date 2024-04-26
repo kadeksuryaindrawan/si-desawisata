@@ -51,15 +51,11 @@ Route::group(['middleware' => ['role:Admin','auth']],function(){
     Route::get('/pilihpengelola/{id}',[ObjekWisataController::class,'pilihPengelola'])->name('pilihpengelola');
     Route::put('/pilihpengelola/{id}',[ObjekWisataController::class,'tambahPengelola'])->name('tambahpengelola');
 
-    Route::get('/editfoto/{id}', [ObjekWisataController::class, 'editfoto'])->name('editfoto');
-    Route::put('/editfotoproses/{id}', [ObjekWisataController::class, 'editfotoproses'])->name('editfotoproses');
-
     Route::resource('kabupaten', KabupatenController::class);
 
     Route::resource('kategori',KategoriController::class);
 
-    Route::post('/upload', UploadTemporaryImageController::class)->name('uploadtemporary');
-    Route::delete('/delete', DeleteTemporaryImageController::class)->name('deletetemporary');
+
 });
 
 //pengelola
@@ -69,6 +65,11 @@ Route::group(['middleware' => ['role:Admin|Pengelola','auth']],function(){
     Route::put('/ubahpassword/{id}',[PengelolaController::class,'updatePassword'])->name('updatepassword');
 
     Route::resource('objekwisata',ObjekWisataController::class);
+
+    Route::get('/editfoto/{id}', [ObjekWisataController::class, 'editfoto'])->name('editfoto');
+    Route::put('/editfotoproses/{id}', [ObjekWisataController::class, 'editfotoproses'])->name('editfotoproses');
+    Route::post('/upload', UploadTemporaryImageController::class)->name('uploadtemporary');
+    Route::delete('/delete', DeleteTemporaryImageController::class)->name('deletetemporary');
 
 });
 

@@ -50,7 +50,7 @@
                     <div class="card-header">
                         <h4 class="card-title">Daftar Desa Wisata</h4>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" style="overflow-x: scroll;">
                         <!-- table bordered -->
                             <table class="table" id="table1">
                                 <thead>
