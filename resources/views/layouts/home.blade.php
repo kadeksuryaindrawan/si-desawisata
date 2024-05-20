@@ -52,7 +52,6 @@
                         <li><a href="#" class="white"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
                         <li><a href="#" class="white"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
                         <li><a href="#" class="white"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
-                        <li><a href="#" class="white"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -78,18 +77,21 @@
                                     <a href="{{ url('/about') }}">About Us</a>
                                 </li>
                                 <li class="submenu dropdown {{ (request()->segment(1) == 'desawisata' || request()->segment(1) == 'kategoridesawisata' || request()->segment(1) == 'detail') ? 'active' : '' }}">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Desa Wisata <i class="icon-arrow-down" aria-hidden="true"></i></a>
+                                    <a href="#" class="dropdown-toggle" id="navbarDropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Desa Wisata <i class="icon-arrow-down" aria-hidden="true"></i></a>
                                     <ul class="dropdown-menu">
                                         <li class="submenu dropdown">
-                                            <a href="{{ url('/desawisata') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">All ({{ $allDesaWisata }})</a>
+                                            <a href="{{ url('/desawisata') }}" class="dropdown-toggle">All ({{ $allDesaWisata }})</a>
                                             @foreach ($kabupatens as $kabupaten)
-                                                <a href="{{ route('desawisatakabupaten',$kabupaten->id) }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ ucwords($kabupaten->nama_kabupaten) }} ({{ $kabupaten->objekWisata()->count() }})</a>
+                                                <a href="{{ route('desawisatakabupaten',$kabupaten->id) }}" class="dropdown-toggle" >{{ ucwords($kabupaten->nama_kabupaten) }} ({{ $kabupaten->objekWisata()->count() }})</a>
                                             @endforeach
                                         </li>
                                     </ul>
                                 </li>
                                 <li class="{{ (request()->segment(1) == 'contact') ? 'active' : '' }}">
                                     <a href="{{ url('/contact') }}">Contact Us</a>
+                                </li>
+                                <li>
+                                    <a href="#" data-toggle="modal" data-target="#searchModal"><i class="fas fa-search"></i></a>
                                 </li>
                                 @if (Auth::check() == false)
                                     <li>
@@ -113,13 +115,41 @@
 
 
                         <div id="slicknav-mobile"></div>
+
+
+
+
                     </div>
+
                 </div><!-- /.container-fluid -->
             </nav>
         </div>
         <!-- Navigation Bar Ends -->
+
     </header>
     <!-- header ends -->
+
+                        <!-- Search Modal -->
+                        <div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="searchModalLabel">Cari Desa Wisata</h5>
+                                        <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ route('search') }}" method="GET">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" name="key" placeholder="Cari Desa Wisata / Kabupaten">
+                                            </div>
+                                            <button type="submit" class="nir-btn mt-2">Cari</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
     @yield('content')
 
@@ -136,7 +166,7 @@
                                 SIDETA
                             </a>
                             <p class="mt-3 mb-3 white">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Odio suspendisse leo neque iaculis molestie sagittis maecenas aenean eget molestie sagittis.
+                                Sideta merupakan Sistem Informasi Desa Wisata yang dapat memberikan anda informasi tentang desa wisata yang ada di Bali.
                             </p>
                             <ul>
                                 <li class="white"><strong>Location:</strong> Bali, Indonesia</li><br>
@@ -200,8 +230,9 @@
     <!-- Back to top ends -->
 
     <!-- *Scripts* -->
-
     <script src="{{ asset('landing') }}/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     <script src="{{ asset('landing') }}/js/particles.js"></script>
     <script src="{{ asset('landing') }}/js/particlerun.js"></script>
 

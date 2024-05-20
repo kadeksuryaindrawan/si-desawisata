@@ -58,7 +58,6 @@
                                         <th>NO</th>
                                         <th>Pengelola</th>
                                         <th>Kabupaten</th>
-                                        <th>Kategori</th>
                                         <th>Nama Desa Wisata</th>
                                         <th>Action</th>
                                     </tr>
@@ -78,7 +77,6 @@
                                                     <td>{{ ucwords($item->pengelola->name) }}</td>
                                                 @endif
                                                 <td>{{ ucwords($item->kabupaten->nama_kabupaten) }}</td>
-                                                <td>{{ ucwords($item->kategori->nama_kategori) }}</td>
                                                 <td>{{ ucwords($item->nama) }}</td>
 
                                                 <td>

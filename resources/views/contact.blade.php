@@ -31,10 +31,10 @@
                         <div class="contact-info bg-white">
                             <div class="contact-info-title text-center mb-4 px-5">
                                 <h3 class="mb-1">INFORMASI TENTANG KAMI</h3>
-                                <p class="mb-0">Sagittis posuere id nam quis vestibulum vestibulum a facilisi at elit hendrerit scelerisque sodales nam dis orci.</p>
+                                <p class="mb-0">Berikut merupakan informasi tentang kami.</p>
                             </div>
                             <div class="contact-info-content row mb-1">
-                                <div class="col-lg-4 col-md-6 mb-4">
+                                <div class="col-lg-6 col-md-6 mb-4">
                                     <div class="info-item bg-lgrey px-4 py-5 border-all text-center rounded">
                                         <div class="info-icon mb-2">
                                             <i class="fa fa-map-marker-alt theme"></i>
@@ -45,18 +45,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-4 col-md-6 mb-4">
-                                    <div class="info-item bg-lgrey px-4 py-5 border-all text-center rounded">
-                                        <div class="info-icon mb-2">
-                                            <i class="fa fa-phone theme"></i>
-                                        </div>
-                                        <div class="info-content">
-                                            <h3>Telp</h3>
-                                            <p class="m-0">977-444-666-888</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-12 mb-4">
+                                <div class="col-lg-6 col-md-6 mb-4">
                                     <div class="info-item bg-lgrey px-4 py-5 border-all text-center rounded">
                                         <div class="info-icon mb-2">
                                             <i class="fa fa-envelope theme"></i>

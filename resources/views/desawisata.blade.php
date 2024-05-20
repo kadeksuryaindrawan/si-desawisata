@@ -25,11 +25,18 @@
     <!-- Last Minute Deal Starts -->
     <section class="trending pb-9">
         <div class="container">
+
             <div class="section-title mb-6 w-75 mx-auto text-center">
                 <h4 class="mb-1 theme1">Desa Wisata</h4>
-                <h2 class="mb-1">Daftar Desa Wisata <span class="theme">Bali</span></h2>
+                @if (isset($key))
+                    <h2 class="mb-1">Daftar Desa Wisata</h2>
+                    <p>Hasil Pencarian Untuk : <span class="theme">{{ $key }}</span></p>
+                @else
+                    <h2 class="mb-1">Daftar Desa Wisata <span class="theme">Bali</span></h2>
+                    <p>Jumlah Desa Wisata Di Bali : {{ $allDesaWisata }}</p>
+                @endif
 
-                @if ($kategori_id == 'all' || $kategori_id == null)
+                {{-- @if ($kategori_id == 'all' || $kategori_id == null)
                     <p>Jumlah Desa Wisata Di Bali : {{ $allDesaWisata }}</p>
                 @else
                 @php
@@ -41,9 +48,9 @@
                         <p>Belum ada data!</p>
                     @endif
 
-                @endif
+                @endif --}}
             </div>
-                <form class="mb-5" action="{{ route('kategorifilter') }}" method="POST">
+                {{-- <form class="mb-5" action="{{ route('kategorifilter') }}" method="POST">
                     @csrf
                     <input type="hidden" name="kabupaten_id" id="" value="{{ NULL }}">
                     <div class="row">
@@ -62,7 +69,7 @@
                         </div>
                     </div>
 
-                </form>
+                </form> --}}
             <div class="trend-box">
                 <div class="row">
                     @if ($datas->count()>0)
@@ -75,12 +82,11 @@
                                             @endforeach
                                             <img src="{{ asset('images/objekwisata/'.$image->folder.'/'.$image->name) }}" style="width: 100%;height:400px;object-fit:cover;" alt="image" class="">
                                             <div class="trend-content1 p-4">
-                                                <h5 class="theme1 mb-1"><i class="flaticon-location-pin"></i> {{ ucwords($item->kategori->nama_kategori) }}</h5>
                                                 <h3 class="mb-1 white">{{ ucwords($item->nama) }}</h3>
                                                 <div class="entry-meta d-flex align-items-center justify-content-between">
                                                     <div class="entry-author">
-                                                        <i class="fas fa-map-marker-alt white"></i>
-                                                        <span class="fw-bold white"> {{ ucwords($item->kabupaten->nama_kabupaten) }}</span>
+                                                        <i class="fas fa-map-marker-alt theme1"></i>
+                                                        <span class="fw-bold theme1"> {{ ucwords($item->kabupaten->nama_kabupaten) }}</span>
                                                     </div>
                                                 </div>
                                             </div>

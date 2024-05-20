@@ -47,19 +47,7 @@
                                                 </select>
                                             </div>
                                         </div>
-
                                         <div class="col-6">
-                                            <div class="form-group">
-                                                <label for="email-id-vertical">Pilih Kategori</label>
-                                                <select name="kategori_id" id="" class="form-control">
-                                                    <option value="">Pilih Kategori</option>
-                                                    @foreach ($kategoris as $items)
-                                                        <option value="{{ $items->id }}">{{ $items->nama_kategori }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
                                             <div class="form-group">
                                                 <label for="email-id-vertical">Nama Desa Wisata</label>
                                                 <input type="text" id="email-id-vertical" class="form-control"
@@ -97,12 +85,6 @@
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <label for="potensi_wisata" class="form-label">Potensi Wisata</label>
-                                                <textarea class="form-control" id="potensi_wisata" rows="3" name="potensi_wisata" required></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-group">
                                                 <label for="image">Foto</label>
                                                 <input type="file" id="image" class="filepond"
                                                     name="image" multiple credits="false" required>
@@ -136,23 +118,30 @@
 
         let map = new L.map('map' , mapOptions);
 
-        let layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+        let layer = new L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png');
         map.addLayer(layer);
 
-
         let marker = null;
-        map.on('click', (event)=> {
 
-            if(marker !== null){
+        function setMarker(lat, lng) {
+            if (marker !== null) {
                 map.removeLayer(marker);
             }
+            marker = L.marker([lat, lng]).addTo(map);
+            document.getElementById('latitude').value = lat;
+            document.getElementById('longitude').value = lng;
+        }
 
-            marker = L.marker([event.latlng.lat , event.latlng.lng]).addTo(map);
+        map.on('click', (event) => {
+            setMarker(event.latlng.lat, event.latlng.lng);
+        });
 
-            document.getElementById('latitude').value = event.latlng.lat;
-            document.getElementById('longitude').value = event.latlng.lng;
-
-        })
+        L.Control.geocoder({
+        defaultMarkGeocode: false
+        }).on('markgeocode', function (event) {
+            let latlng = event.geocode.center;
+            setMarker(latlng.lat, latlng.lng);
+        }).addTo(map);
 
         FilePond.registerPlugin(FilePondPluginImagePreview);
 

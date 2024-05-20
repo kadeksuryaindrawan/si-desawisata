@@ -33,7 +33,7 @@
                                 <div class="single-title">
                                     <h2 class="mb-1">{{ ucwords($data->nama) }}</h2>
                                     <div class="rating-main d-flex align-items-center">
-                                        <p class="mb-0 me-2"><i class="icon-location-pin"></i> {{ ucwords($data->kabupaten->nama_kabupaten) }} |  Kategori : <span class="mb-0 me-2 theme">{{ ucwords($data->kategori->nama_kategori) }}</span></p>
+                                        <p class="mb-0 me-2"><i class="icon-location-pin"></i> {{ ucwords($data->kabupaten->nama_kabupaten) }}</p>
 
                                     </div>
 
@@ -59,15 +59,11 @@
                                     <h5 class="mb-2">Alamat</h5>
                                     <p>{{ ucfirst($data->alamat) }}</p>
                                 </div>
-                                <div class="bg-grey p-4 rounded mb-2">
-                                    <h4 class="mb-2">Potensi Wisata</h4>
-                                    <p>{{ ucfirst($data->potensi_wisata) }}</p>
-                                </div>
                             </div>
                         </div>
 
                         <div class="description mb-2">
-                            <h4 class="mb-2">Foto Lainnya</h4>
+                            <h4 class="mb-2">Foto Desa Wisata</h4>
                             <div class="services-image d-md-flex">
                                 @foreach ($images as $image)
                                     <div class="me-md-2 rounded overflow-hidden mb-2">

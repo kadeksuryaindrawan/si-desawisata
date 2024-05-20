@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Image;
 use App\Models\Kabupaten;
-use App\Models\Kategori;
 use App\Models\ObjekWisata;
 use App\Models\TemporaryImage;
 use App\Models\User;
@@ -40,9 +39,8 @@ class ObjekWisataController extends Controller
      */
     public function create()
     {
-        $kategoris = Kategori::orderBy('created_at','DESC')->get();
         $kabupatens = Kabupaten::orderBy('created_at', 'DESC')->get();
-        return view('admin.objekwisata.add',compact('kategoris','kabupatens'));
+        return view('admin.objekwisata.add',compact('kabupatens'));
     }
 
     /**
@@ -54,14 +52,12 @@ class ObjekWisataController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'kategori_id' => 'required',
             'kabupaten_id' => 'required',
             'nama'=>['required', 'string', 'max:255','unique:objek_wisatas'],
             'alamat'=>['required', 'string'],
             'longitude'=>['required', 'string'],
             'latitude'=>['required', 'string'],
             'deskripsi'=>['required', 'string'],
-            'potensi_wisata'=>['required', 'string'],
         ]);
 
         $temporary_images = TemporaryImage::all();
@@ -80,13 +76,11 @@ class ObjekWisataController extends Controller
             $objek_wisata = ObjekWisata::create([
                 'pengelola_id' => NULL,
                 'kabupaten_id' => $request->kabupaten_id,
-                'kategori_id' => $request->kategori_id,
                 'nama' => $request->nama,
                 'alamat' => $request->alamat,
                 'longitude' => $request->longitude,
                 'latitude' => $request->latitude,
                 'deskripsi' => $request->deskripsi,
-                'potensi_wisata' => $request->potensi_wisata,
             ]);
             foreach ($temporary_images as $temporary_image) {
                 File::copy(public_path('images/tmp/' . $temporary_image->folder . '/' . $temporary_image->file), public_path('images/objekwisata/' . $temporary_image->folder . '/' . $temporary_image->file));
@@ -128,9 +122,8 @@ class ObjekWisataController extends Controller
     public function edit($id)
     {
         $data = ObjekWisata::find($id);
-        $kategoris = Kategori::orderBy('created_at','DESC')->get();
         $kabupatens = Kabupaten::orderBy('created_at', 'DESC')->get();
-        return view('admin.objekwisata.edit',compact('data','kategoris','kabupatens'));
+        return view('admin.objekwisata.edit',compact('data','kabupatens'));
     }
 
     /**
@@ -146,38 +139,32 @@ class ObjekWisataController extends Controller
         if($data->nama == $request->nama){
             $request->validate([
                 'kabupaten_id' => 'required',
-                'kategori_id' => 'required',
                 'nama'=>['required', 'string', 'max:255'],
                 'alamat'=>['required', 'string'],
                 'longitude'=>['required', 'string'],
                 'latitude'=>['required', 'string'],
                 'deskripsi'=>['required', 'string'],
-                'potensi_wisata'=>['required', 'string']
             ]);
         }
         else{
             $request->validate([
                 'kabupaten_id' => 'required',
-                'kategori_id' => 'required',
                 'nama'=>['required', 'string', 'max:255','unique:objek_wisatas'],
                 'alamat'=>['required', 'string'],
                 'longitude'=>['required', 'string'],
                 'latitude'=>['required', 'string'],
                 'deskripsi'=>['required', 'string'],
-                'potensi_wisata'=>['required', 'string']
             ]);
         }
 
         try{
                 ObjekWisata::where('id',$id)->update([
                     'kabupaten_id' => $request->kabupaten_id,
-                    'kategori_id' => $request->kategori_id,
                     'nama' => $request->nama,
                     'alamat' => $request->alamat,
                     'longitude' => $request->longitude,
                     'latitude' => $request->latitude,
                     'deskripsi' => $request->deskripsi,
-                    'potensi_wisata' => $request->potensi_wisata,
                     ]);
 
             return redirect()->route('objekwisata.index')->with('success', 'Objek wisata berhasil diedit!');

@@ -29,7 +29,8 @@ Route::get('/desawisata', [LandingController::class,'desawisata']);
 
 Route::get('/desawisata/{id}', [LandingController::class, 'desawisatakabupaten'])->name('desawisatakabupaten');
 
-Route::post('/kategoridesawisata', [LandingController::class, 'kategorifilter'])->name('kategorifilter');
+// Route::post('/kategoridesawisata', [LandingController::class, 'kategorifilter'])->name('kategorifilter');
+Route::get('/search', [LandingController::class, 'search'])->name('search');
 
 Route::get('/detail/{id}', [LandingController::class,'detail'])->name('detail');
 

@@ -12,10 +12,10 @@
                             <div class="slide-image" style="background-image:url({{ asset('landing') }}/images/slider/1.jpg)"></div>
                             <div class="swiper-content">
                                 <div class="entry-meta mb-2">
-                                    <h5 class="entry-category mb-0 white">Desa Yang Indah</h5>
+                                    <h5 class="entry-category mb-0 white">Desa Wisata Yang Indah</h5>
                                 </div>
                                 <h1 class="mb-2 white">Desa Wisata Di Bali Yang Sangat Indah</h1>
-                                <p class="white mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+                                <p class="white mb-4">Desa Wisata yang ada di Bali terbilang sangat indah di berbagai kabupatennya.</p>
                                 <a href="{{ url('/contact') }}" class="nir-btn">Contact Us</a>
                             </div>
                             <div class="dot-overlay"></div>
@@ -29,7 +29,7 @@
                                     <h5 class="entry-category mb-0 white">Jelajahi Bali</h5>
                                 </div>
                                 <h1 class="mb-2 white">Jelajahi Bali Dengan Berbagai Desa Wisatanya</h1>
-                                <p class="white mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+                                <p class="white mb-4">Di website Sideta.com, anda dapat menjelajahi berbagai desa wisata yang ada di Bali.</p>
                                 <div class="slider-button d-flex justify-content-center">
                                      <a href="{{ url('/desawisata') }}" class="nir-btn me-4">Desa Wisata</a>
                                       <a href="{{ url('/contact') }}" class="nir-btn-black">Contact Us</a>
@@ -54,7 +54,7 @@
             <div class="section-title mb-6 w-50 mx-auto text-center">
                 <h4 class="mb-1 theme1">Informasi</h4>
                 <h2 class="mb-1">Desa Wisata <span class="theme">Bali</span></h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                <p>Berikut merupakan informasi tentang Desa Wisata di Bali.</p>
             </div>
 
             <!-- why us starts -->
@@ -68,7 +68,7 @@
                                         <i class="icon-flag theme"></i>
                                     </div>
                                     <h4>Pilihan Tepat</h4>
-                                    <p class="mb-2">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.</p>
+                                    <p class="mb-2">Pilihan anda sangat tepat jika mengunjungi website kami.</p>
                                 </div>
                             </div>
                         </div>
@@ -79,7 +79,7 @@
                                         <i class="icon-location-pin theme"></i>
                                     </div>
                                     <h4>Lokasi Jelas</h4>
-                                    <p class="mb-2">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.</p>
+                                    <p class="mb-2">Lokasi yang ditampilkan merupakan lokasi yang tepat dan jelas.</p>
                                 </div>
                             </div>
                         </div>
@@ -90,7 +90,7 @@
                                         <i class="icon-directions theme"></i>
                                     </div>
                                     <h4>Wisata Indah</h4>
-                                    <p class="mb-2">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.</p>
+                                    <p class="mb-2">Desa Wisata Bali merupakan salah satu desa wisata yang indah.</p>
                                 </div>
                             </div>
                         </div>
@@ -101,7 +101,7 @@
                                         <i class="icon-compass theme"></i>
                                     </div>
                                     <h4>Peta Lokasi</h4>
-                                    <p class="mb-2">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.</p>
+                                    <p class="mb-2">Anda akan mendapatkan peta lokasi desa wisata di Bali.</p>
                                 </div>
                             </div>
                         </div>
@@ -123,7 +123,7 @@
                     <div class="section-title text-center text-lg-start">
                         <h4 class="mb-1 theme1">Peta</h4>
                         <h2 class="mb-1">Lokasi <span class="theme">Desa Wisata</span></h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                        <p>Berikut merupakan peta lokasi Desa Wisata yang ada di Bali.</p>
                     </div>
                 </div>
             </div>
@@ -135,29 +135,7 @@
                         @endforeach
                     </div>
             </div>
-            <div class="category-main-inner">
-                <div class="row align-items-center">
-                    <div class="col-lg-2">
-                        <h3 class="mb-0 white bg-theme p-3 py-5 text-center rounded my-4">Kategori</h3>
-                    </div>
-                    <div class="col-lg-10">
-                        <div class="row side-slider">
 
-                            @foreach ($kategoris as $kategori)
-                                <div class="col-lg-3 col-md-6 my-4">
-                                        <div style="width: 100%;" class="category-item box-shadow text-center py-5 px-0 bg-white rounded overflow-hidden">
-                                            <div class="trending-topic-content">
-                                                <h5 class="mb-0">{{ ucwords($kategori->nama_kategori) }}</h5>
-                                            </div>
-                                        </div>
-                                </div>
-                            @endforeach
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
     <!-- best tour Ends -->
@@ -168,7 +146,7 @@
             <div class="section-title mb-6 w-75 mx-auto text-center">
                 <h4 class="mb-1 theme1">Desa Wisata</h4>
                 <h2 class="mb-1">Daftar <span class="theme">Desa Wisata</span></h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                <p>Berikut merupakan 3 daftar terakhir yang ditambahkan dari Desa Wisata yang ada di Bali.</p>
             </div>
             <div class="trend-box">
                 <div class="row">
@@ -182,12 +160,11 @@
                                         @endforeach
                                         <img src="{{ asset('images/objekwisata/'.$image->folder.'/'.$image->name) }}" style="width: 100%;height:400px;object-fit:cover;" alt="image" class="">
                                         <div class="trend-content1 p-4">
-                                            <h5 class="theme1 mb-1"><i class="flaticon-location-pin"></i> {{ ucwords($item->kategori->nama_kategori) }}</h5>
                                             <h3 class="mb-1 white">{{ ucwords($item->nama) }}</h3>
                                             <div class="entry-meta d-flex align-items-center justify-content-between">
                                                 <div class="entry-author">
-                                                    <i class="fas fa-map-marker-alt white"></i>
-                                                    <span class="fw-bold white"> {{ ucwords($item->kabupaten->nama_kabupaten) }}</span>
+                                                    <i class="fas fa-map-marker-alt theme1 mb-1"></i>
+                                                    <span class="fw-bold theme1 mb-1"> {{ ucwords($item->kabupaten->nama_kabupaten) }}</span>
                                                 </div>
                                             </div>
                                         </div>
