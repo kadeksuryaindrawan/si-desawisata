@@ -41,7 +41,7 @@
                                             <div class="form-group">
                                                 <label for="email-id-vertical">Nama Kabupaten</label>
                                                 <input type="text" id="email-id-vertical" class="form-control"
-                                                    name="nama_kabupaten" placeholder="Nama Kategori" value="{{ $data->nama_kabupaten }}">
+                                                    name="nama_kabupaten" placeholder="Nama Kabupaten" value="{{ $data->nama_kabupaten }}">
                                             </div>
                                         </div>
                                         <div class="col-12 d-flex justify-content-center">

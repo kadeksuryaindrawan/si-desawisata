@@ -3,8 +3,8 @@
 @section('content')
 
 @php
-    $page = 'kabupaten';
-    $title = 'Kabupaten';
+    $page = 'potensi';
+    $title = 'Potensi';
 @endphp
 
 <div class="page-heading">
@@ -16,7 +16,7 @@
                             {{$error}}
                         </div>
                         @endforeach
-                <h3>Tambah Kabupaten</h3>
+                <h3>Edit Foto Objek Wisata</h3>
             </div>
         </div>
     </div>
@@ -28,21 +28,24 @@
             <div class="col-md-12 col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Form Tambah Kabupaten</h4>
+                        <h4 class="card-title">Form Edit Foto Potensi</h4>
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                            <form action="{{ route('kabupaten.store') }}" method="POST" class="form form-vertical">
+                            <form action="{{ route('editfotopotensiproses',$potensi->id) }}" method="POST" class="form form-vertical" enctype="multipart/form-data">
                                 @csrf
+                                @method('PUT')
                                 <div class="form-body">
                                     <div class="row">
+
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <label for="email-id-vertical">Nama Kabupaten</label>
-                                                <input type="text" id="email-id-vertical" class="form-control"
-                                                    name="nama_kabupaten" placeholder="Nama Kabupaten">
+                                                <label for="image">Foto</label>
+                                                <input type="file" id="image" class="filepond"
+                                                    name="image" multiple credits="false" required>
                                             </div>
                                         </div>
+
                                         <div class="col-12 d-flex justify-content-center">
                                             <button type="submit" class="btn btn-primary me-1 my-2 w-100">Simpan</button>
                                         </div>
@@ -50,7 +53,7 @@
                                 </div>
                             </form>
                             <div class="row">
-                                <a href="{{ route('kabupaten.index') }}" class="d-flex justify-content-center w-full">
+                                <a href="{{ route('potensi.index') }}" class="d-flex justify-content-center w-full">
                                     <button class="btn btn-secondary w-100 my-1">Kembali</button>
                                 </a>
                             </div>
@@ -63,5 +66,23 @@
     <!-- // Basic Vertical form layout section end -->
 </div>
 
+<script>
+    FilePond.registerPlugin(FilePondPluginImagePreview);
+
+        const inputElement = document.querySelector('input[type="file"]');
+
+        const pond = FilePond.create(inputElement);
+
+        FilePond.setOptions({
+            acceptedFileTypes: ['image/*'],
+            server: {
+                process: '{{ route('uploadtemporarypotensi') }}',
+                revert: '{{ route('deletetemporarypotensi') }}',
+                headers:{
+                    'X_CSRF-TOKEN': '{{ csrf_token() }}'
+                }
+            },
+        });
+</script>
 
 @endsection

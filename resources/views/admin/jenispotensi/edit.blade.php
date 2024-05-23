@@ -3,8 +3,8 @@
 @section('content')
 
 @php
-    $page = 'kabupaten';
-    $title = 'Kabupaten';
+    $page = 'jenispotensi';
+    $title = 'Jenis Potensi';
 @endphp
 
 <div class="page-heading">
@@ -16,7 +16,7 @@
                             {{$error}}
                         </div>
                         @endforeach
-                <h3>Tambah Kabupaten</h3>
+                <h3>Edit Jenis Potensi</h3>
             </div>
         </div>
     </div>
@@ -28,19 +28,20 @@
             <div class="col-md-12 col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Form Tambah Kabupaten</h4>
+                        <h4 class="card-title">Form Edit Jenis Potensi</h4>
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                            <form action="{{ route('kabupaten.store') }}" method="POST" class="form form-vertical">
+                            <form action="{{route('jenispotensi.update',$data->id)}}" method="POST" class="form form-vertical">
                                 @csrf
+                                @method('PUT')
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <label for="email-id-vertical">Nama Kabupaten</label>
+                                                <label for="email-id-vertical">Nama Jenis Potensi</label>
                                                 <input type="text" id="email-id-vertical" class="form-control"
-                                                    name="nama_kabupaten" placeholder="Nama Kabupaten">
+                                                    name="nama_jenis_potensi" placeholder="Nama Jenis Potensi" value="{{ $data->nama_jenis_potensi }}">
                                             </div>
                                         </div>
                                         <div class="col-12 d-flex justify-content-center">
@@ -50,7 +51,7 @@
                                 </div>
                             </form>
                             <div class="row">
-                                <a href="{{ route('kabupaten.index') }}" class="d-flex justify-content-center w-full">
+                                <a href="{{ route('jenispotensi.index') }}" class="d-flex justify-content-center w-full">
                                     <button class="btn btn-secondary w-100 my-1">Kembali</button>
                                 </a>
                             </div>

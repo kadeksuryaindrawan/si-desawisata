@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\DeleteTemporaryImageController;
+use App\Http\Controllers\DeleteTemporaryPotensiImageController;
+use App\Http\Controllers\JenisPotensiController;
 use App\Http\Controllers\KabupatenController;
 use App\Http\Controllers\KategoriController;
 use Illuminate\Support\Facades\Route;
@@ -8,7 +10,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\ObjekWisataController;
 use App\Http\Controllers\PengelolaController;
+use App\Http\Controllers\PotensiController;
 use App\Http\Controllers\UploadTemporaryImageController;
+use App\Http\Controllers\UploadTemporaryPotensiImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,7 +58,7 @@ Route::group(['middleware' => ['role:Admin','auth']],function(){
 
     Route::resource('kabupaten', KabupatenController::class);
 
-    Route::resource('kategori',KategoriController::class);
+    Route::resource('jenispotensi',JenisPotensiController::class);
 
 
 });
@@ -71,6 +75,13 @@ Route::group(['middleware' => ['role:Admin|Pengelola','auth']],function(){
     Route::put('/editfotoproses/{id}', [ObjekWisataController::class, 'editfotoproses'])->name('editfotoproses');
     Route::post('/upload', UploadTemporaryImageController::class)->name('uploadtemporary');
     Route::delete('/delete', DeleteTemporaryImageController::class)->name('deletetemporary');
+
+    Route::resource('potensi', PotensiController::class);
+
+    Route::get('/editfotopotensi/{id}', [PotensiController::class, 'editfotopotensi'])->name('editfotopotensi');
+    Route::put('/editfotopotensiproses/{id}', [PotensiController::class, 'editfotopotensiproses'])->name('editfotopotensiproses');
+    Route::post('/uploadpotensi', UploadTemporaryPotensiImageController::class)->name('uploadtemporarypotensi');
+    Route::delete('/deletepotensi', DeleteTemporaryPotensiImageController::class)->name('deletetemporarypotensi');
 
 });
 

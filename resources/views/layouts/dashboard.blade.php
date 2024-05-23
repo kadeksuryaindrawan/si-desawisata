@@ -86,6 +86,18 @@
                     <span>Desa Wisata</span>
                 </a>
             </li>
+            <li <?php if($page == "jenispotensi") echo "class='sidebar-item active'";?>>
+                <a href="{{ route('jenispotensi.index') }}" class='sidebar-link'>
+                    <i class="bi bi-list-columns"></i>
+                    <span>Jenis Potensi</span>
+                </a>
+            </li>
+            <li <?php if($page == "potensi") echo "class='sidebar-item active'";?>>
+                <a href="{{ route('potensi.index') }}" class='sidebar-link'>
+                    <i class="bi bi-chevron-double-up"></i>
+                    <span>Potensi</span>
+                </a>
+            </li>
             @endif
 
             @if (Auth::user()->hasRole('Pengelola'))
@@ -95,7 +107,15 @@
                     <span>Desa Wisata</span>
                 </a>
             </li>
+            <li <?php if($page == "potensi") echo "class='sidebar-item active'";?>>
+                <a href="{{ route('potensi.index') }}" class='sidebar-link'>
+                    <i class="bi bi-chevron-double-up"></i>
+                    <span>Potensi</span>
+                </a>
+            </li>
             @endif
+
+
         </ul>
     </div>
 </div>
