@@ -36,28 +36,44 @@
                                 @csrf
                                 <div class="form-body">
                                     <div class="row">
-                                        <div class="col-6">
-                                            <div class="form-group">
-                                                <label for="email-id-vertical">Pilih Desa Wisata</label>
-                                                <select name="objek_wisata_id" id="" class="form-control">
-                                                    <option value="" selected disabled>- Pilih Desa Wisata -</option>
-                                                    @foreach ($objek_wisatas as $items)
-                                                        <option value="{{ $items->id }}">{{ $items->nama }}</option>
-                                                    @endforeach
-                                                </select>
+                                        @if (Auth::user()->hasRole('Admin'))
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <label for="email-id-vertical">Pilih Desa Wisata</label>
+                                                    <select name="objek_wisata_id" id="" class="form-control">
+                                                        <option value="" selected disabled>- Pilih Desa Wisata -</option>
+                                                        @foreach ($objek_wisatas as $items)
+                                                            <option value="{{ $items->id }}">{{ $items->nama }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="form-group">
-                                                <label for="email-id-vertical">Pilih Jenis Potensi</label>
-                                                <select name="jenis_potensi_id" id="" class="form-control">
-                                                    <option value="" selected disabled>Pilih Jenis Potensi</option>
-                                                    @foreach ($jenis_potensis as $items)
-                                                        <option value="{{ $items->id }}">{{ $items->nama_jenis_potensi }}</option>
-                                                    @endforeach
-                                                </select>
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <label for="email-id-vertical">Pilih Jenis Potensi</label>
+                                                    <select name="jenis_potensi_id" id="" class="form-control">
+                                                        <option value="" selected disabled>Pilih Jenis Potensi</option>
+                                                        @foreach ($jenis_potensis as $items)
+                                                            <option value="{{ $items->id }}">{{ $items->nama_jenis_potensi }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
                                             </div>
-                                        </div>
+                                        @endif
+                                        @if (Auth::user()->hasRole('Pengelola'))
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label for="email-id-vertical">Pilih Jenis Potensi</label>
+                                                    <select name="jenis_potensi_id" id="" class="form-control">
+                                                        <option value="" selected disabled>Pilih Jenis Potensi</option>
+                                                        @foreach ($jenis_potensis as $items)
+                                                            <option value="{{ $items->id }}">{{ $items->nama_jenis_potensi }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        @endif
+
                                         <div class="col-12">
                                             <div class="form-group">
                                                 <label for="nama">Nama Potensi</label>

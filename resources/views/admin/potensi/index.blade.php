@@ -25,9 +25,19 @@
 
                 <h3>Potensi</h3>
                 <div class="my-3">
+                    @if (Auth::user()->hasRole('Admin'))
                         <a href="{{ route('potensi.create') }}">
                             <button class="btn btn-primary my-2">Tambah Potensi</button>
                         </a>
+                    @endif
+                    @if (Auth::user()->hasRole('Pengelola'))
+                        @if ($objek_wisata->count()>0)
+                            <a href="{{ route('potensi.create') }}">
+                                <button class="btn btn-primary my-2">Tambah Potensi</button>
+                            </a>
+                        @endif
+                    @endif
+
 
                 </div>
             </div>

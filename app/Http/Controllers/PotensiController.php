@@ -23,16 +23,24 @@ class PotensiController extends Controller
     {
         if (Auth::user()->hasRole('Admin')) {
             $datas = Potensi::orderBy('created_at', 'DESC')->get();
+            return view('admin.potensi.index', compact('datas'));
         } elseif (Auth::user()->hasRole('Pengelola')) {
             $id_user = Auth::user()->id;
             $objek_wisata = ObjekWisata::where('pengelola_id', '=', $id_user)->orderBy('created_at', 'DESC')->get();
-            foreach($objek_wisata as $objek_wisata){
-                $objek_wisata_id = $objek_wisata->id;
+            if($objek_wisata->count()>0){
+                foreach ($objek_wisata as $objek_wisata) {
+                    $objek_wisata_id = $objek_wisata->id;
+                }
             }
+            else{
+                $objek_wisata_id = NULL;
+            }
+
             $datas = Potensi::where('objek_wisata_id', '=', $objek_wisata_id)->orderBy('created_at', 'DESC')->get();
+            return view('admin.potensi.index', compact('datas', 'objek_wisata'));
         }
 
-        return view('admin.potensi.index', compact('datas'));
+
     }
 
     /**
@@ -55,19 +63,36 @@ class PotensiController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'jenis_potensi_id' => 'required',
-            'objek_wisata_id' => 'required',
-            'nama' => ['required', 'string', 'max:255', 'unique:potensis'],
-            'harga_tiket' => ['required', 'numeric'],
-            'alamat' => ['required', 'string'],
-            'longitude' => ['required', 'string'],
-            'latitude' => ['required', 'string'],
-            'deskripsi' => ['required', 'string'],
-            'fasilitas' => ['required', 'string'],
-            'sosial_media' => ['required'],
-            'kontak' => ['required'],
-        ]);
+        if (Auth::user()->hasRole('Admin')){
+            $validator = Validator::make($request->all(), [
+                'jenis_potensi_id' => 'required',
+                'objek_wisata_id' => 'required',
+                'nama' => ['required', 'string', 'max:255'],
+                'harga_tiket' => ['required', 'numeric'],
+                'alamat' => ['required', 'string'],
+                'longitude' => ['required', 'string'],
+                'latitude' => ['required', 'string'],
+                'deskripsi' => ['required', 'string'],
+                'fasilitas' => ['required', 'string'],
+                'sosial_media' => ['required'],
+                'kontak' => ['required'],
+            ]);
+        }
+        if (Auth::user()->hasRole('Pengelola')) {
+            $validator = Validator::make($request->all(), [
+                'jenis_potensi_id' => 'required',
+                'nama' => ['required', 'string', 'max:255'],
+                'harga_tiket' => ['required', 'numeric'],
+                'alamat' => ['required', 'string'],
+                'longitude' => ['required', 'string'],
+                'latitude' => ['required', 'string'],
+                'deskripsi' => ['required', 'string'],
+                'fasilitas' => ['required', 'string'],
+                'sosial_media' => ['required'],
+                'kontak' => ['required'],
+            ]);
+        }
+
 
         $temporary_images = TemporaryImage::all();
 
@@ -82,19 +107,42 @@ class PotensiController extends Controller
         }
 
         try {
-            $potensi = Potensi::create([
-                'jenis_potensi_id' => $request->jenis_potensi_id,
-                'objek_wisata_id' => $request->objek_wisata_id,
-                'nama' => $request->nama,
-                'harga_tiket' => $request->harga_tiket,
-                'alamat' => $request->alamat,
-                'longitude' => $request->longitude,
-                'latitude' => $request->latitude,
-                'deskripsi' => $request->deskripsi,
-                'fasilitas' => $request->fasilitas,
-                'sosial_media' => $request->sosial_media,
-                'kontak' => $request->kontak,
-            ]);
+            if (Auth::user()->hasRole('Admin')) {
+                $potensi = Potensi::create([
+                    'jenis_potensi_id' => $request->jenis_potensi_id,
+                    'objek_wisata_id' => $request->objek_wisata_id,
+                    'nama' => $request->nama,
+                    'harga_tiket' => $request->harga_tiket,
+                    'alamat' => $request->alamat,
+                    'longitude' => $request->longitude,
+                    'latitude' => $request->latitude,
+                    'deskripsi' => $request->deskripsi,
+                    'fasilitas' => $request->fasilitas,
+                    'sosial_media' => $request->sosial_media,
+                    'kontak' => $request->kontak,
+                ]);
+            }
+            if (Auth::user()->hasRole('Pengelola')) {
+                $id_user = Auth::user()->id;
+                $objek_wisata = ObjekWisata::where('pengelola_id', '=', $id_user)->orderBy('created_at', 'DESC')->get();
+                foreach ($objek_wisata as $objek_wisata) {
+                    $objek_wisata_id = $objek_wisata->id;
+                }
+                $potensi = Potensi::create([
+                    'jenis_potensi_id' => $request->jenis_potensi_id,
+                    'objek_wisata_id' => $objek_wisata_id,
+                    'nama' => $request->nama,
+                    'harga_tiket' => $request->harga_tiket,
+                    'alamat' => $request->alamat,
+                    'longitude' => $request->longitude,
+                    'latitude' => $request->latitude,
+                    'deskripsi' => $request->deskripsi,
+                    'fasilitas' => $request->fasilitas,
+                    'sosial_media' => $request->sosial_media,
+                    'kontak' => $request->kontak,
+                ]);
+            }
+
             foreach ($temporary_images as $temporary_image) {
                 File::copy(public_path('images/tmp/' . $temporary_image->folder . '/' . $temporary_image->file), public_path('images/potensi/' . $temporary_image->folder . '/' . $temporary_image->file));
                 PotensiImage::create([
@@ -150,51 +198,66 @@ class PotensiController extends Controller
     public function update(Request $request, Potensi $potensi)
     {
         $data = $potensi;
-        if ($data->nama == $request->nama) {
-            $request->validate([
-                'jenis_potensi_id' => 'required',
-                'objek_wisata_id' => 'required',
-                'nama' => ['required', 'string', 'max:255'],
-                'harga_tiket' => ['required', 'numeric'],
-                'alamat' => ['required', 'string'],
-                'longitude' => ['required', 'string'],
-                'latitude' => ['required', 'string'],
-                'deskripsi' => ['required', 'string'],
-                'fasilitas' => ['required', 'string'],
-                'sosial_media' => ['required'],
-                'kontak' => ['required'],
-            ]);
-        } else {
-            $request->validate([
-                'jenis_potensi_id' => 'required',
-                'objek_wisata_id' => 'required',
-                'nama' => ['required', 'string', 'max:255', 'unique:potensis'],
-                'harga_tiket' => ['required', 'numeric'],
-                'alamat' => ['required', 'string'],
-                'longitude' => ['required', 'string'],
-                'latitude' => ['required', 'string'],
-                'deskripsi' => ['required', 'string'],
-                'fasilitas' => ['required', 'string'],
-                'sosial_media' => ['required'],
-                'kontak' => ['required'],
-            ]);
+        if (Auth::user()->hasRole('Admin')) {
+                $request->validate([
+                    'jenis_potensi_id' => 'required',
+                    'objek_wisata_id' => 'required',
+                    'nama' => ['required', 'string', 'max:255'],
+                    'harga_tiket' => ['required', 'numeric'],
+                    'alamat' => ['required', 'string'],
+                    'longitude' => ['required', 'string'],
+                    'latitude' => ['required', 'string'],
+                    'deskripsi' => ['required', 'string'],
+                    'fasilitas' => ['required', 'string'],
+                    'sosial_media' => ['required'],
+                    'kontak' => ['required'],
+                ]);
+        }
+        if (Auth::user()->hasRole('Pengelola')) {
+                $request->validate([
+                    'jenis_potensi_id' => 'required',
+                    'nama' => ['required', 'string', 'max:255'],
+                    'harga_tiket' => ['required', 'numeric'],
+                    'alamat' => ['required', 'string'],
+                    'longitude' => ['required', 'string'],
+                    'latitude' => ['required', 'string'],
+                    'deskripsi' => ['required', 'string'],
+                    'fasilitas' => ['required', 'string'],
+                    'sosial_media' => ['required'],
+                    'kontak' => ['required'],
+                ]);
         }
 
         try {
-            Potensi::where('id', $potensi->id)->update([
-                'jenis_potensi_id' => $request->jenis_potensi_id,
-                'objek_wisata_id' => $request->objek_wisata_id,
-                'nama' => $request->nama,
-                'harga_tiket' => $request->harga_tiket,
-                'alamat' => $request->alamat,
-                'longitude' => $request->longitude,
-                'latitude' => $request->latitude,
-                'deskripsi' => $request->deskripsi,
-                'fasilitas' => $request->fasilitas,
-                'sosial_media' => $request->sosial_media,
-                'kontak' => $request->kontak,
-            ]);
-
+            if (Auth::user()->hasRole('Admin')) {
+                Potensi::where('id', $potensi->id)->update([
+                    'jenis_potensi_id' => $request->jenis_potensi_id,
+                    'objek_wisata_id' => $request->objek_wisata_id,
+                    'nama' => $request->nama,
+                    'harga_tiket' => $request->harga_tiket,
+                    'alamat' => $request->alamat,
+                    'longitude' => $request->longitude,
+                    'latitude' => $request->latitude,
+                    'deskripsi' => $request->deskripsi,
+                    'fasilitas' => $request->fasilitas,
+                    'sosial_media' => $request->sosial_media,
+                    'kontak' => $request->kontak,
+                ]);
+            }
+            if (Auth::user()->hasRole('Pengelola')) {
+                Potensi::where('id', $potensi->id)->update([
+                    'jenis_potensi_id' => $request->jenis_potensi_id,
+                    'nama' => $request->nama,
+                    'harga_tiket' => $request->harga_tiket,
+                    'alamat' => $request->alamat,
+                    'longitude' => $request->longitude,
+                    'latitude' => $request->latitude,
+                    'deskripsi' => $request->deskripsi,
+                    'fasilitas' => $request->fasilitas,
+                    'sosial_media' => $request->sosial_media,
+                    'kontak' => $request->kontak,
+                ]);
+            }
             return redirect()->route('potensi.index')->with('success', 'Potensi berhasil diedit!');
         } catch (\Throwable $th) {
             throw $th;
