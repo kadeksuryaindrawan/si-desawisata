@@ -98,6 +98,12 @@
                     <span>Potensi</span>
                 </a>
             </li>
+            <li <?php if($page == "laporan") echo "class='sidebar-item active'";?>>
+                <a href="{{ route('export') }}" class='sidebar-link'>
+                    <i class="bi bi-file-earmark-pdf"></i>
+                    <span>Laporan</span>
+                </a>
+            </li>
             @endif
 
             @if (Auth::user()->hasRole('Pengelola'))

@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Image;
+use App\Models\JenisPotensi;
 use App\Models\Kabupaten;
 use App\Models\ObjekWisata;
+use App\Models\Potensi;
+use App\Models\PotensiImage;
 use Illuminate\Http\Request;
 
 class LandingController extends Controller
@@ -91,7 +94,33 @@ class LandingController extends Controller
         $data = ObjekWisata::find($id);
         $images = Image::where('objek_wisata_id', $id)->get();
         $kabupatens = Kabupaten::orderBy('created_at', 'desc')->get();
-        return view('detail',compact('data','images','kabupatens', 'allDesaWisata'));
+        $jenis_potensis = JenisPotensi::with(['potensi' => function ($query) use ($id) {
+            $query->where('objek_wisata_id', $id);
+        }])
+        ->withCount(['potensi as potensi_count' => function ($query) use ($id) {
+            $query->where('objek_wisata_id', $id);
+        }])
+        ->get();
+        return view('detail',compact('data','images','kabupatens', 'allDesaWisata','jenis_potensis'));
+    }
+
+    public function potensi($objek_wisata_id, $jenis_potensi_id)
+    {
+        $allDesaWisata = ObjekWisata::count();
+        $datas = Potensi::where('objek_wisata_id',$objek_wisata_id)->where('jenis_potensi_id',$jenis_potensi_id)->orderBy('created_at','desc')->get();
+        $objek_wisata = ObjekWisata::find($objek_wisata_id);
+        $jenis_potensi = JenisPotensi::find($jenis_potensi_id);
+        $kabupatens = Kabupaten::orderBy('created_at', 'desc')->get();
+        return view('potensi', compact('datas', 'kabupatens', 'allDesaWisata','objek_wisata','jenis_potensi'));
+    }
+
+    public function detailPotensi($id)
+    {
+        $allDesaWisata = ObjekWisata::count();
+        $data = Potensi::find($id);
+        $images = PotensiImage::where('potensi_id', $id)->get();
+        $kabupatens = Kabupaten::orderBy('created_at', 'desc')->get();
+        return view('detail_potensi', compact('data', 'images', 'kabupatens', 'allDesaWisata'));
     }
 
     public function contact(){

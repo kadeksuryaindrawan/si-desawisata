@@ -75,10 +75,39 @@
                             </div>
                         </div>
 
-                        <div  id="single-map" class="single-map mb-4">
+                        <div class="mb-2">
+                            <h4 class="mb-2">Potensi Wisata</h4>
+                            <div class="row">
+                                @foreach ($jenis_potensis as $jenis)
+                                    <div class="col-lg-3">
+                                        <a href="{{ route('daftarPotensi',['objek_wisata_id' => $data->id, 'jenis_potensi_id' => $jenis->id]) }}">
+                                            <div class="bg-grey text-center p-4 my-2">
+                                                <h5>{{ ucwords($jenis->nama_jenis_potensi) }} ({{ $jenis->potensi_count }})</h5>
+                                            </div>
+                                        </a>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+
+                        {{-- <div id="single-map" class="single-map mb-4">
                             <h4>Map</h4>
                             <div class="map rounded overflow-hidden">
                                 <div id="map" style="width: 100%;height: 500px;border-radius: 10px;z-index:1;"></div>
+                            </div>
+                        </div> --}}
+
+                        <div id="single-map" class="single-map mb-4">
+                            <h4>Peta Potensi Wisata</h4>
+                            <div class="map rounded overflow-hidden">
+                                <div id="map" style="width: 100%;height: 500px;border-radius: 10px; z-index:1;"></div>
+                                <div id="data" style="display: none;">
+                                    @foreach ($jenis_potensis as $jenis)
+                                        @foreach ($jenis->potensi as $item)
+                                            <div class="item" data-lat="{{ $item->latitude }}" data-lng="{{ $item->longitude }}" data-nama="{{ $item->nama }}" data-jenis="{{ $item->jenis_potensi->nama_jenis_potensi }}" data-deskripsi="{{ $item->deskripsi }}"></div>
+                                        @endforeach
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -94,7 +123,7 @@
 
         let mapOptions = {
             center:[{{ $data->latitude }}, {{ $data->longitude }}],
-            zoom:13
+            zoom:10
         }
 
         let map = new L.map('map' , mapOptions);
@@ -102,10 +131,17 @@
         let layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
         map.addLayer(layer);
 
-        var latlong = L.marker([{{ $data->latitude }}, {{ $data->longitude }}]);
+        let dataItems = document.querySelectorAll('.item');
+        dataItems.forEach(item => {
+            let lat = item.dataset.lat;
+            let lng = item.dataset.lng;
+            let nama = item.dataset.nama;
+            let jenis = item.dataset.jenis;
+            let deskripsi = item.dataset.deskripsi;
 
-        latlong.addTo(map).bindPopup("<b>{{ ucwords($data->nama) }}</b><br><p>{{ ucfirst($data->deskripsi) }}</p><a target='_BLANK' href='https://www.google.com/maps?q={{ $data->latitude }}, {{ $data->longitude }}'><button class='btn btn-primary btn-sm'>Lihat Pada Maps</button></a>");
-
+            var latlong = L.marker([lat, lng]);
+            latlong.addTo(map).bindPopup("<b>" + jenis + "</b><br><br><b>" + nama + "</b><br><p>" + deskripsi + "</p><a target='_BLANK' href='https://www.google.com/maps?q=" + lat + "," + lng + "'><button class='btn btn-primary btn-sm'>Lihat Pada Maps</button></a>");
+        });
 
     </script>
 @endsection

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DeleteTemporaryImageController;
 use App\Http\Controllers\DeleteTemporaryPotensiImageController;
+use App\Http\Controllers\ExportController;
 use App\Http\Controllers\JenisPotensiController;
 use App\Http\Controllers\KabupatenController;
 use App\Http\Controllers\KategoriController;
@@ -37,6 +38,8 @@ Route::get('/desawisata/{id}', [LandingController::class, 'desawisatakabupaten']
 Route::get('/search', [LandingController::class, 'search'])->name('search');
 
 Route::get('/detail/{id}', [LandingController::class,'detail'])->name('detail');
+Route::get('/daftar_potensi/{objek_wisata_id}/{jenis_potensi_id}', [LandingController::class, 'potensi'])->name('daftarPotensi');
+Route::get('/detail_potensi/{id}', [LandingController::class, 'detailPotensi'])->name('detailPotensi');
 
 Route::get('/contact', [LandingController::class,'contact']);
 
@@ -59,6 +62,9 @@ Route::group(['middleware' => ['role:Admin','auth']],function(){
     Route::resource('kabupaten', KabupatenController::class);
 
     Route::resource('jenispotensi',JenisPotensiController::class);
+
+    Route::get('/export', [ExportController::class, 'index'])->name('export');
+    Route::get('/export-all', [ExportController::class, 'exportAll'])->name('export-all');
 
 
 });
